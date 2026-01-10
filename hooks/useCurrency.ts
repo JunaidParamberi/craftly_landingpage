@@ -9,6 +9,20 @@ import {
   getCurrencyFromCountry
 } from '@/lib/currency'
 
+const isDevelopment = process.env.NODE_ENV === 'development'
+
+const logger = {
+  log: (...args: any[]) => {
+    if (isDevelopment) console.log(...args)
+  },
+  warn: (...args: any[]) => {
+    if (isDevelopment) console.warn(...args)
+  },
+  error: (...args: any[]) => {
+    console.error(...args) // Always log errors
+  },
+}
+
 export function useCurrency() {
   // Initialize with AED as default since base prices are in AED (will be updated on detection)
   const [currency, setCurrency] = useState<CurrencyInfo>(getCurrencyFromCountry('AE'))
@@ -20,10 +34,10 @@ export function useCurrency() {
       try {
         setIsLoading(true)
         const detectedCurrency = await getUserCurrency()
-        console.log('Detected currency:', detectedCurrency)
+        logger.log('Detected currency:', detectedCurrency)
         setCurrency(detectedCurrency)
       } catch (error) {
-        console.error('Currency detection failed:', error)
+        logger.error('Currency detection failed:', error)
         // Default to AED if detection fails since base prices are in AED
         setCurrency(getCurrencyFromCountry('AE'))
       } finally {
@@ -46,17 +60,17 @@ export function useCurrency() {
       const converted = await convertPrice(price, currency.code)
       // If conversion returns same value (rate not found), fallback to USD
       if (converted === price && currency.code !== 'AED') {
-        console.warn(`Currency ${currency.code} not available, falling back to USD`)
+        logger.warn(`Currency ${currency.code} not available, falling back to USD`)
         return await convertPrice(price, 'USD')
       }
       return converted
     } catch (error) {
-      console.error('Price conversion failed:', error)
+      logger.error('Price conversion failed:', error)
       // Fallback to USD conversion
       try {
         return await convertPrice(price, 'USD')
       } catch (fallbackError) {
-        console.error('USD fallback conversion also failed:', fallbackError)
+        logger.error('USD fallback conversion also failed:', fallbackError)
         return price * 0.27 // Rough AED to USD conversion as last resort
       }
     }

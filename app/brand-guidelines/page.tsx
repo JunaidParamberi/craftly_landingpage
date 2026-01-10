@@ -36,7 +36,10 @@ export default function BrandGuidelinesPage() {
         setCopiedItems({ ...copiedItems, [id]: false })
       }, 2000)
     } catch (err) {
-      console.error('Failed to copy:', err)
+      // Silently fail - copy errors are common (e.g., clipboard permissions)
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to copy:', err)
+      }
     }
   }
 

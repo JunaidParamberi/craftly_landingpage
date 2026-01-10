@@ -126,15 +126,37 @@ colors: {
 
 ## 🚀 Deployment
 
-### Vercel (Recommended)
+### Vercel (Recommended - Production Ready)
+
+This project is optimized for Vercel deployment. See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions.
+
+**Quick Deploy:**
 
 ```bash
 # Install Vercel CLI
 npm i -g vercel
 
-# Deploy
+# Deploy to preview
 vercel
+
+# Deploy to production
+vercel --prod
 ```
+
+**Or via Vercel Dashboard:**
+1. Go to [vercel.com/new](https://vercel.com/new)
+2. Import your Git repository
+3. Vercel will auto-detect Next.js settings
+4. Click "Deploy"
+
+**Production Features Configured:**
+- ✅ Security headers (CSP, X-Frame-Options, etc.)
+- ✅ Image optimization (WebP/AVIF)
+- ✅ Code splitting and minification
+- ✅ Conditional logging (dev only)
+- ✅ Error handling and fallbacks
+- ✅ Font fallbacks for resilience
+- ✅ Environment variable support
 
 ### Other Platforms
 
@@ -146,10 +168,19 @@ The app can be deployed to any platform that supports Next.js:
 
 ## 📝 Environment Variables
 
-No environment variables required for basic functionality. Add if needed for:
-- Analytics (Google Analytics, etc.)
-- API endpoints
-- Third-party services
+**Optional Environment Variables:**
+
+Create a `.env.local` file (or set in Vercel dashboard):
+
+```env
+# Application URL (used for OpenGraph metadata)
+NEXT_PUBLIC_APP_URL=https://craftlyai.com
+
+# Environment
+NODE_ENV=production
+```
+
+**Note:** Environment variables starting with `NEXT_PUBLIC_` are exposed to the browser.
 
 ## 🔍 SEO
 

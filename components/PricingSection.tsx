@@ -179,7 +179,9 @@ const PricingSection: React.FC<PricingSectionProps> = ({
         return
       }
 
-      console.log('💰 Converting prices from AED to:', currency.code)
+      if (process.env.NODE_ENV === 'development') {
+        console.log('💰 Converting prices from AED to:', currency.code)
+      }
 
       const converted = await Promise.all(
         tiers.map(async (tier) => {
@@ -207,7 +209,9 @@ const PricingSection: React.FC<PricingSectionProps> = ({
           const convertedPrice = await convertAEDPrice(basePrice)
           const convertedAnnualPrice = baseAnnualPrice ? await convertAEDPrice(baseAnnualPrice) : null
 
-          console.log(`💰 Converted ${tier.name}: ${basePrice} AED → ${convertedPrice.toFixed(0)} ${currency.code}`)
+          if (process.env.NODE_ENV === 'development') {
+            console.log(`💰 Converted ${tier.name}: ${basePrice} AED → ${convertedPrice.toFixed(0)} ${currency.code}`)
+          }
 
           return {
             ...tier,

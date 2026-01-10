@@ -1,5 +1,19 @@
 // Currency detection and conversion utility
 
+const isDevelopment = process.env.NODE_ENV === 'development'
+
+const logger = {
+  log: (...args: any[]) => {
+    if (isDevelopment) console.log(...args)
+  },
+  warn: (...args: any[]) => {
+    if (isDevelopment) console.warn(...args)
+  },
+  error: (...args: any[]) => {
+    console.error(...args) // Always log errors
+  },
+}
+
 export interface CurrencyInfo {
   code: string
   symbol: string
@@ -68,7 +82,7 @@ export function getCurrencyFromCountry(countryCode: string): CurrencyInfo {
   const currency = COUNTRY_TO_CURRENCY[countryCode]
   if (!currency) {
     // If country not found, default to USD (for unsupported countries)
-    console.warn(`Country code ${countryCode} not found in currency map, defaulting to USD`)
+    logger.warn(`Country code ${countryCode} not found in currency map, defaulting to USD`)
     return DEFAULT_CURRENCY_USD
   }
   return currency
@@ -99,46 +113,46 @@ export async function detectUserCountry(): Promise<string> {
           const data = await response.json()
           if (data.country_code) {
             const countryCode = data.country_code.toUpperCase()
-            console.log('✅ IP geolocation detected country:', countryCode, 'from:', data.country_name || 'Unknown')
+            logger.log('✅ IP geolocation detected country:', countryCode, 'from:', data.country_name || 'Unknown')
             
             // If country is in our currency map, use it immediately
             if (COUNTRY_TO_CURRENCY[countryCode]) {
-              console.log(`✅ Using currency for ${countryCode}:`, COUNTRY_TO_CURRENCY[countryCode].code)
+              logger.log(`✅ Using currency for ${countryCode}:`, COUNTRY_TO_CURRENCY[countryCode].code)
               return countryCode
             }
             
             // Even if not in map, return the country code anyway
             // getCurrencyFromCountry will handle fallback to USD for unsupported countries
-            console.log(`⚠️ Country ${countryCode} detected but not in currency map, will fallback to USD`)
+            logger.log(`⚠️ Country ${countryCode} detected but not in currency map, will fallback to USD`)
             return countryCode
           }
         } else {
-          console.warn('⚠️ IP geolocation API returned non-OK status:', response.status, response.statusText)
+          logger.warn('⚠️ IP geolocation API returned non-OK status:', response.status, response.statusText)
         }
       } catch (fetchError: any) {
         clearTimeout(timeoutId)
         if (fetchError.name === 'AbortError' || fetchError.message?.includes('aborted')) {
-          console.warn('⚠️ IP geolocation timed out (3s), trying fallback methods')
+          logger.warn('⚠️ IP geolocation timed out (3s), trying fallback methods')
         } else if (fetchError.message?.includes('Failed to fetch') || fetchError.message?.includes('NetworkError') || fetchError.message?.includes('CORS')) {
-          console.warn('⚠️ IP geolocation network error (possibly blocked by CORS or ad blocker), trying fallback methods')
+          logger.warn('⚠️ IP geolocation network error (possibly blocked by CORS or ad blocker), trying fallback methods')
         } else {
           throw fetchError
         }
       }
     } catch (error: any) {
-      console.warn('⚠️ IP geolocation failed:', error.message || error)
+      logger.warn('⚠️ IP geolocation failed:', error.message || error)
     }
 
     // PRIORITY 2: Try browser timezone detection
     try {
       const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-      console.log('📍 Timezone detected:', timezone)
+      logger.log('📍 Timezone detected:', timezone)
       
       // UAE timezone checks
       if (timezone === 'Asia/Dubai' || 
           timezone.toLowerCase().includes('dubai') || 
           timezone.toLowerCase().includes('abu')) {
-        console.log('✅ UAE detected from timezone:', timezone)
+        logger.log('✅ UAE detected from timezone:', timezone)
         return 'AE'
       }
       
@@ -189,20 +203,20 @@ export async function detectUserCountry(): Promise<string> {
         return 'JP'
       }
     } catch (error) {
-      console.warn('⚠️ Timezone detection failed:', error)
+      logger.warn('⚠️ Timezone detection failed:', error)
     }
 
     // PRIORITY 3: Try browser locale
     try {
       const locale = navigator.language || (navigator as any).userLanguage || 'en-US'
-      console.log('🌐 Browser locale:', locale)
+      logger.log('🌐 Browser locale:', locale)
       
       const localeLower = locale.toLowerCase()
       const localeParts = locale.split('-')
       
       // Check for specific locale patterns
       if (localeLower.includes('ae') || localeLower === 'ar-ae' || localeLower.includes('uae')) {
-        console.log('✅ UAE detected from locale:', locale)
+        logger.log('✅ UAE detected from locale:', locale)
         return 'AE'
       }
       
@@ -218,12 +232,12 @@ export async function detectUserCountry(): Promise<string> {
         const countryCode = localeParts[1].toUpperCase()
         // If detected country is in our currency map, return it
         if (COUNTRY_TO_CURRENCY[countryCode]) {
-          console.log(`✅ Country ${countryCode} detected from locale`)
+          logger.log(`✅ Country ${countryCode} detected from locale`)
           return countryCode
         }
       }
     } catch (error) {
-      console.warn('⚠️ Locale detection failed:', error)
+      logger.warn('⚠️ Locale detection failed:', error)
     }
 
     // FALLBACK: If all methods fail, try one more check for UAE
@@ -231,7 +245,7 @@ export async function detectUserCountry(): Promise<string> {
     try {
       const finalTimezoneCheck = Intl.DateTimeFormat().resolvedOptions().timeZone.toLowerCase()
       if (finalTimezoneCheck.includes('dubai') || finalTimezoneCheck.includes('abu') || finalTimezoneCheck === 'asia/dubai') {
-        console.log('✅ UAE detected in final timezone check:', finalTimezoneCheck)
+        logger.log('✅ UAE detected in final timezone check:', finalTimezoneCheck)
         return 'AE'
       }
     } catch (e) {
@@ -240,10 +254,10 @@ export async function detectUserCountry(): Promise<string> {
 
     // Final fallback: Default to USD only if we truly can't detect anything
     // (User said show dollar if currency not available - meaning for unsupported countries)
-    console.log('⚠️ All detection methods failed, defaulting to USD (unsupported location)')
+    logger.log('⚠️ All detection methods failed, defaulting to USD (unsupported location)')
     return 'US' // Default to USD for unsupported/unrecognized locations
   } catch (error) {
-    console.error('❌ Country detection failed completely:', error)
+    logger.error('❌ Country detection failed completely:', error)
     // On complete failure, default to USD
     return 'US' // Default to USD on error
   }
@@ -275,7 +289,7 @@ export async function fetchExchangeRates(): Promise<Record<string, number>> {
     
     return rates
   } catch (error) {
-    console.error('Failed to fetch exchange rates:', error)
+    logger.error('Failed to fetch exchange rates:', error)
     
     // Return cached rates if available, or default rates
     if (exchangeRatesCache) {
@@ -317,7 +331,7 @@ export async function convertPrice(aedPrice: number, targetCurrency: string): Pr
   
   // If currency rate not found, try USD as fallback
   if (!rate) {
-    console.warn(`Exchange rate for ${targetCurrency} not found, falling back to USD`)
+    logger.warn(`Exchange rate for ${targetCurrency} not found, falling back to USD`)
     rate = rates['USD'] || 0.27 // Default USD rate if API fails
   }
   

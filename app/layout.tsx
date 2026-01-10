@@ -6,6 +6,7 @@ const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 })
 
 const sora = Sora({
@@ -13,6 +14,7 @@ const sora = Sora({
   variable: '--font-sora',
   display: 'swap',
   weight: ['300', '400', '500', '600', '700', '800'],
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 })
 
 export const metadata: Metadata = {

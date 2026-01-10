@@ -13,31 +13,31 @@ import Footer from '@/components/Footer'
 export default function Home() {
   const handleGetStarted = () => {
     // Handle get started action
-    console.log('Get Started clicked')
     // Navigate to signup page or open modal
     // Example: router.push('/signup')
     // Example: window.location.href = '#signup'
+    window.location.href = '#signup'
   }
 
   const handleStartFreeTrial = () => {
     // Handle start free trial action
-    console.log('Start Free Trial clicked')
     // Navigate to signup page
     // Example: router.push('/signup?plan=trial')
+    window.location.href = '#signup?plan=trial'
   }
 
   const handleWatchDemo = () => {
     // Handle watch demo action
-    console.log('Watch Demo clicked')
     // Open video modal or navigate to demo page
     // Example: setVideoModalOpen(true)
+    window.location.href = '#demo'
   }
 
   const handleContactSales = () => {
     // Handle contact sales action
-    console.log('Contact Sales clicked')
     // Navigate to contact form or open modal
     // Example: router.push('/contact?type=sales')
+    window.location.href = '#contact?type=sales'
   }
 
   return (
