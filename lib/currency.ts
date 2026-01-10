@@ -1,6 +1,10 @@
 // Currency detection and conversion utility
 
-const isDevelopment = process.env.NODE_ENV === 'development'
+// Check environment - works in both server and client
+// Next.js replaces process.env.NODE_ENV at build time for client-side code
+const isDevelopment = 
+  (typeof process !== 'undefined' && process.env?.NODE_ENV === 'development') ||
+  (typeof window !== 'undefined' && window.location?.hostname === 'localhost')
 
 const logger = {
   log: (...args: any[]) => {
@@ -74,6 +78,51 @@ let exchangeRatesCache: Record<string, number> | null = null
 let exchangeRatesCacheTime: number = 0
 const CACHE_DURATION = 3600000 // 1 hour in milliseconds
 
+// IP geolocation failure cache (in localStorage)
+const IP_GEOLOCATION_FAILURE_KEY = 'craftlyai_ip_geo_failed'
+const IP_GEOLOCATION_FAILURE_DURATION = 24 * 60 * 60 * 1000 // 24 hours
+
+/**
+ * Check if IP geolocation should be skipped (due to recent failures)
+ */
+function shouldSkipIPGeolocation(): boolean {
+  if (typeof window === 'undefined') return false
+  
+  try {
+    const failureTimestamp = localStorage.getItem(IP_GEOLOCATION_FAILURE_KEY)
+    if (!failureTimestamp) return false
+    
+    const failureTime = parseInt(failureTimestamp, 10)
+    const now = Date.now()
+    
+    // Skip if failure was less than 24 hours ago
+    if (now - failureTime < IP_GEOLOCATION_FAILURE_DURATION) {
+      logger.log('⚠️ Skipping IP geolocation due to recent failures (cached)')
+      return true
+    }
+    
+    // Clear old failure record
+    localStorage.removeItem(IP_GEOLOCATION_FAILURE_KEY)
+    return false
+  } catch (e) {
+    // If localStorage is unavailable, don't skip
+    return false
+  }
+}
+
+/**
+ * Mark IP geolocation as failed
+ */
+function markIPGeolocationFailed(): void {
+  if (typeof window === 'undefined') return
+  
+  try {
+    localStorage.setItem(IP_GEOLOCATION_FAILURE_KEY, Date.now().toString())
+  } catch (e) {
+    // Ignore localStorage errors
+  }
+}
+
 /**
  * Get currency info from country code
  * Falls back to USD if country/currency not found (for unsupported countries)
@@ -95,52 +144,92 @@ export function getCurrencyFromCountry(countryCode: string): CurrencyInfo {
 export async function detectUserCountry(): Promise<string> {
   try {
     // PRIORITY 1: Try IP-based geolocation FIRST (most accurate)
-    try {
-      const controller = new AbortController()
-      const timeoutId = setTimeout(() => {
-        controller.abort()
-      }, 3000) // 3 second timeout
-      
+    // Skip in production (build-time check) or if we've had recent failures (cached in localStorage)
+    // Timezone/locale detection is more reliable and doesn't require external APIs
+    // This prevents CORS/rate limit issues in production
+    // Next.js replaces process.env.NODE_ENV at build time, so production check works in client code
+    const isProdBuild = typeof process !== 'undefined' && process.env?.NODE_ENV === 'production'
+    const skipIPGeo = isProdBuild || shouldSkipIPGeolocation()
+    
+    if (!skipIPGeo) {
       try {
-        const response = await fetch('https://ipapi.co/json/', {
-          headers: { 'Accept': 'application/json' },
-          signal: controller.signal
-        })
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => {
+          controller.abort()
+        }, 2000) // Reduced to 2 second timeout for faster fallback
         
-        clearTimeout(timeoutId)
-        
-        if (response.ok) {
-          const data = await response.json()
-          if (data.country_code) {
-            const countryCode = data.country_code.toUpperCase()
-            logger.log('✅ IP geolocation detected country:', countryCode, 'from:', data.country_name || 'Unknown')
-            
-            // If country is in our currency map, use it immediately
-            if (COUNTRY_TO_CURRENCY[countryCode]) {
-              logger.log(`✅ Using currency for ${countryCode}:`, COUNTRY_TO_CURRENCY[countryCode].code)
-              return countryCode
+        try {
+          const response = await fetch('https://ipapi.co/json/', {
+            headers: { 'Accept': 'application/json' },
+            signal: controller.signal
+          })
+          
+          clearTimeout(timeoutId)
+          
+          // Handle rate limiting and other HTTP errors
+          if (response.status === 429 || response.status >= 500) {
+            logger.warn('⚠️ IP geolocation API unavailable (rate limit/server error), using fallback methods')
+            markIPGeolocationFailed() // Cache the failure
+            // Don't throw, continue to fallback methods
+          } else if (!response.ok) {
+            logger.warn('⚠️ IP geolocation API returned non-OK status:', response.status, response.statusText)
+            // Don't cache for client errors (4xx), might be temporary
+          } else {
+            // Response is OK, parse and use it
+            try {
+              const data = await response.json()
+              if (data.country_code) {
+                const countryCode = data.country_code.toUpperCase()
+                logger.log('✅ IP geolocation detected country:', countryCode, 'from:', data.country_name || 'Unknown')
+                
+                // Clear any previous failure cache on success
+                if (typeof window !== 'undefined') {
+                  try {
+                    localStorage.removeItem(IP_GEOLOCATION_FAILURE_KEY)
+                  } catch (e) {
+                    // Ignore
+                  }
+                }
+                
+                // If country is in our currency map, use it immediately
+                if (COUNTRY_TO_CURRENCY[countryCode]) {
+                  logger.log(`✅ Using currency for ${countryCode}:`, COUNTRY_TO_CURRENCY[countryCode].code)
+                  return countryCode
+                }
+                
+                // Even if not in map, return the country code anyway
+                // getCurrencyFromCountry will handle fallback to USD for unsupported countries
+                logger.log(`⚠️ Country ${countryCode} detected but not in currency map, will fallback to USD`)
+                return countryCode
+              }
+            } catch (parseError) {
+              logger.warn('⚠️ Failed to parse IP geolocation response:', parseError)
+              // Continue to fallback methods
             }
-            
-            // Even if not in map, return the country code anyway
-            // getCurrencyFromCountry will handle fallback to USD for unsupported countries
-            logger.log(`⚠️ Country ${countryCode} detected but not in currency map, will fallback to USD`)
-            return countryCode
           }
-        } else {
-          logger.warn('⚠️ IP geolocation API returned non-OK status:', response.status, response.statusText)
+        } catch (fetchError: any) {
+          clearTimeout(timeoutId)
+          // Handle various fetch errors gracefully
+          if (fetchError.name === 'AbortError' || fetchError.message?.includes('aborted')) {
+            logger.warn('⚠️ IP geolocation timed out (2s), using fallback methods')
+          } else if (fetchError.message?.includes('Failed to fetch') || 
+                     fetchError.message?.includes('NetworkError') || 
+                     fetchError.message?.includes('CORS') ||
+                     fetchError.message?.includes('429') ||
+                     fetchError.message?.includes('Too Many Requests') ||
+                     fetchError.message?.includes('ERR_FAILED')) {
+            logger.warn('⚠️ IP geolocation unavailable (CORS/rate limit/network error), using fallback methods')
+            markIPGeolocationFailed() // Cache the failure for 24 hours
+          } else {
+            // For other errors, log but continue with fallback
+            logger.warn('⚠️ IP geolocation error:', fetchError.message || fetchError)
+          }
+          // Don't throw - gracefully continue to fallback methods
         }
-      } catch (fetchError: any) {
-        clearTimeout(timeoutId)
-        if (fetchError.name === 'AbortError' || fetchError.message?.includes('aborted')) {
-          logger.warn('⚠️ IP geolocation timed out (3s), trying fallback methods')
-        } else if (fetchError.message?.includes('Failed to fetch') || fetchError.message?.includes('NetworkError') || fetchError.message?.includes('CORS')) {
-          logger.warn('⚠️ IP geolocation network error (possibly blocked by CORS or ad blocker), trying fallback methods')
-        } else {
-          throw fetchError
-        }
+      } catch (error: any) {
+        logger.warn('⚠️ IP geolocation failed:', error.message || error)
+        markIPGeolocationFailed() // Cache the failure
       }
-    } catch (error: any) {
-      logger.warn('⚠️ IP geolocation failed:', error.message || error)
     }
 
     // PRIORITY 2: Try browser timezone detection

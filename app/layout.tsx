@@ -79,7 +79,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#6366F1" />
       </head>
-      <body className={`${inter.variable} ${sora.variable} font-sans dark`}>{children}</body>
+      <body className={`${inter.variable} ${sora.variable} font-sans dark`} suppressHydrationWarning>{children}</body>
     </html>
   )
 }
