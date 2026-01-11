@@ -174,7 +174,9 @@ Create a `.env.local` file (or set in Vercel dashboard):
 
 ```env
 # Application URL (used for OpenGraph metadata)
-NEXT_PUBLIC_APP_URL=https://craftlyai.com
+# Defaults to staging: https://stage.craftlyai.app
+# For production, set: NEXT_PUBLIC_APP_URL=https://craftlyai.com
+NEXT_PUBLIC_APP_URL=https://stage.craftlyai.app
 
 # Environment
 NODE_ENV=production

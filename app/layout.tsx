@@ -17,6 +17,9 @@ const sora = Sora({
   fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 })
 
+// Get app URL from environment variable (defaults to staging for beta)
+const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://stage.craftlyai.app'
+
 export const metadata: Metadata = {
   title: 'CraftlyAI - Empower Your Independent Consultancy',
   description: 'CraftlyAI: AI-powered business management platform for freelancers worldwide. Automate proposals, manage clients, and track finances. Start your free trial today.',
@@ -43,11 +46,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'CraftlyAI - AI-Powered Business Management for Freelancers Worldwide',
     description: 'Empower your independent consultancy with AI-driven business management tools. Automate proposals, manage clients, track finances, and scale your consultancy globally. Start your 14-day free trial today.',
-    url: 'https://craftlyai.com',
+    url: appUrl,
     siteName: 'CraftlyAI',
     images: [
       {
-        url: 'https://craftlyai.com/og-image.jpg',
+        url: `${appUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: 'CraftlyAI - AI-powered business management platform dashboard showing proposal generation, client management, and financial tracking features for freelancers and consultants worldwide',
@@ -60,7 +63,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'CraftlyAI - AI-Powered Business Management for Freelancers Worldwide',
     description: 'Empower your independent consultancy with AI-driven business management tools. Start your 14-day free trial today.',
-    images: ['https://craftlyai.com/og-image.jpg'],
+    images: [`${appUrl}/og-image.jpg`],
   },
   robots: {
     index: true,

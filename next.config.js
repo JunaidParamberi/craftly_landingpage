@@ -43,7 +43,7 @@ const nextConfig = {
   
   // Environment variables
   env: {
-    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || 'https://craftlyai.com',
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || 'https://stage.craftlyai.app',
   },
 }
 

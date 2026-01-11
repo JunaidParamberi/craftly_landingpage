@@ -193,7 +193,7 @@ const Navigation: React.FC<NavigationProps> = ({
               transition={{ duration: 0.4 }}
             >
               <motion.a
-                href="https://beta.craftlyai.app/"
+                href="https://stage.craftlyai.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -1 }}
@@ -382,7 +382,7 @@ const Navigation: React.FC<NavigationProps> = ({
           {/* Mobile Menu Footer CTA */}
           <div className="p-4 border-t border-indigo-500/20 space-y-2">
             <motion.a
-              href="https://beta.craftlyai.app/"
+              href="https://stage.craftlyai.app/"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.01 }}

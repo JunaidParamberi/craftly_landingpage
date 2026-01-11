@@ -98,7 +98,7 @@ const HeroSectionSplit: React.FC<HeroSectionSplitProps> = ({
             {/* Premium Badge */}
             <motion.div 
               className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-indigo-500/10 via-purple-500/8 to-indigo-500/10 backdrop-blur-xl border border-indigo-500/20 rounded-full group cursor-pointer hover:border-indigo-500/40 hover:bg-indigo-500/15 transition-all duration-300"
-              onClick={() => window.open('https://beta.craftlyai.app/', '_blank')}
+              onClick={() => window.open('https://stage.craftlyai.app/', '_blank')}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               initial={{ opacity: 0, x: -20 }}
@@ -172,7 +172,7 @@ const HeroSectionSplit: React.FC<HeroSectionSplitProps> = ({
               transition={{ delay: 0.6 }}
             >
               <motion.button
-                onClick={() => window.open('https://beta.craftlyai.app/', '_blank')}
+                onClick={() => window.open('https://stage.craftlyai.app/', '_blank')}
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 className="

@@ -23,8 +23,10 @@ This guide will help you deploy the CraftlyAI landing page to Vercel.
    - Output Directory: `.next` (auto-detected)
    - Install Command: `npm install` (auto-detected)
 
-3. **Environment Variables (optional):**
-   - `NEXT_PUBLIC_APP_URL`: Your production URL (e.g., `https://craftlyai.com`)
+3. **Environment Variables:**
+   - `NEXT_PUBLIC_APP_URL`: Your app URL (defaults to `https://stage.craftlyai.app` for beta/staging)
+     - For staging: `NEXT_PUBLIC_APP_URL=https://stage.craftlyai.app`
+     - For production: `NEXT_PUBLIC_APP_URL=https://craftlyai.com`
    - Add any other environment variables if needed
 
 4. **Deploy:**
@@ -60,7 +62,9 @@ Create a `.env.local` file (or set in Vercel dashboard):
 
 ```env
 # Application URL (used for OpenGraph metadata)
-NEXT_PUBLIC_APP_URL=https://craftlyai.com
+# Defaults to staging: https://stage.craftlyai.app
+# For production, set: NEXT_PUBLIC_APP_URL=https://craftlyai.com
+NEXT_PUBLIC_APP_URL=https://stage.craftlyai.app
 
 # Environment
 NODE_ENV=production
