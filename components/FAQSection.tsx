@@ -246,7 +246,7 @@ const FAQAccordionItem: React.FC<FAQAccordionItemProps> = ({
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] as const }}
             className="overflow-hidden"
           >
             <div className="px-4 py-3 md:px-5 md:py-4 bg-slate-900/50 border-t border-indigo-500/20">

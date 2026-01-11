@@ -92,7 +92,7 @@ const HeroSectionSplit: React.FC<HeroSectionSplitProps> = ({
             className="space-y-5"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+            transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] as const }}
           >
             
             {/* Premium Badge */}
@@ -246,7 +246,7 @@ const HeroSectionSplit: React.FC<HeroSectionSplitProps> = ({
             className="relative flex items-center justify-center"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+            transition={{ delay: 0.3, duration: 0.6, ease: [0.23, 1, 0.32, 1] as const }}
           >
             {illustration ? (
               <div className="w-full max-w-xl">{illustration}</div>
