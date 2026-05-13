@@ -62,35 +62,33 @@
     function bootStack(cardId, list) {
       const stack = document.querySelector(`#${cardId} .fc-stack`);
       if (!stack) return;
-      const initial = list[0];
-      stack.innerHTML = `<div class="fc-item active">${renderItem(initial)}</div>`;
       let i = 0;
+
+      function show(item) {
+        stack.innerHTML = `<div class="fc-item active">${renderItem(item)}</div>`;
+      }
+
+      show(list[0]);
       return () => {
         i = (i + 1) % list.length;
-        const next = list[i];
-        const current = stack.querySelector('.fc-item.active');
-        const incoming = document.createElement('div');
-        incoming.className = 'fc-item';
-        incoming.innerHTML = renderItem(next);
-        stack.appendChild(incoming);
-        // animate
-        requestAnimationFrame(() => {
-          if (current) { current.classList.remove('active'); current.classList.add('exiting'); }
-          incoming.classList.add('active');
-        });
-        setTimeout(() => { if (current && current.parentNode) current.parentNode.removeChild(current); }, 600);
+        const el = stack.querySelector('.fc-item');
+        if (!el) {
+          show(list[i]);
+          return;
+        }
+        el.classList.remove('active');
+        el.classList.add('exiting');
+        setTimeout(() => show(list[i]), 450);
       };
     }
 
     const tickA = bootStack('fc1', toastsA);
-    const tickB = bootStack('fc2', toastsB);
 
-    // Stagger the two cards
+    // Toast cycle
     let started = false;
     function startCycle() {
       if (started) return; started = true;
       setTimeout(() => setInterval(() => tickA && tickA(), 4200), 3200);
-      setTimeout(() => setInterval(() => tickB && tickB(), 4200), 5400);
     }
 
     // ---- Live timer on Acme row ----

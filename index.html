@@ -111,7 +111,12 @@
     <div class="mock-wrap reveal d2">
       <div class="float-card fc-1" id="fc1">
         <div class="fc-stack">
-          <div class="fc-item active" data-icon="send" data-color="blue" data-title="Invoice sent" data-sub="Acme Co · $4,200"></div>
+          <div class="fc-item active">
+            <div class="fc-icon" style="width:30px;height:30px;border-radius:8px;background:rgba(45,91,255,.12);color:#1E44E0;display:grid;place-items:center;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M12.5 1.5L6 8M12.5 1.5L8 12.5L6 8M12.5 1.5L1.5 6L6 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div><div class="fc-title">Invoice sent</div><div class="fc-sub">Acme Co · $4,200</div></div>
+          </div>
         </div>
       </div>
       <div class="mock">
@@ -257,11 +262,7 @@
           </aside>
         </div>
       </div>
-      <div class="float-card fc-2" id="fc2">
-        <div class="fc-stack">
-          <div class="fc-item active" data-icon="check" data-color="green" data-title="Paid · just now" data-sub="Auto-reconciled"></div>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
