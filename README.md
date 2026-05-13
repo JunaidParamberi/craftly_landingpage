@@ -1,6 +1,6 @@
 # Craftly.AI Landing Page
 
-Pure HTML/CSS/JS landing page for Craftly.AI — your freelance business, on autopilot.
+Static HTML/CSS/JS landing page for [Craftly.AI](https://app.craftlyai.app/).
 
 ## Run locally
 
@@ -10,14 +10,38 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Deploy
+## Deploy to Vercel
 
-Static site — deploy to Vercel, Netlify, Cloudflare Pages, or any static host. No build step required.
+### Option 1 — GitHub (recommended)
 
-## Structure
+1. Push this repo to GitHub.
+2. Go to [vercel.com/new](https://vercel.com/new) and import the repository.
+3. Vercel auto-detects a static site. No build settings needed.
+4. Click **Deploy**.
+
+### Option 2 — Vercel CLI
+
+```bash
+npm i -g vercel
+vercel          # preview
+vercel --prod   # production
+```
+
+## Project structure
 
 ```
-index.html          # Full landing page (Claude Design export)
-assets/             # Brand SVGs
-vercel.json         # Security headers for Vercel
+index.html
+css/styles.css
+js/main.js
+assets/         # logos & favicon
+vercel.json     # Vercel static config + security headers
 ```
+
+## Vercel settings
+
+| Setting | Value |
+|---------|-------|
+| Framework Preset | Other |
+| Build Command | *(leave empty)* |
+| Output Directory | *(leave empty — files at root)* |
+| Install Command | *(leave empty)* |
