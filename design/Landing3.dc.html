@@ -95,6 +95,29 @@ section[id]{scroll-margin-top:16px}
 .plan-pick{transform:none!important}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+
+.ft-wrap{padding:0 24px 24px}
+.ft{position:relative;overflow:hidden;max-width:1280px;margin:0 auto;border-radius:40px;background:#0E1330;color:#FFFFFF;padding:clamp(40px,6vw,72px) clamp(24px,5vw,64px) 0;box-sizing:border-box}
+.ft-glow{position:absolute;border-radius:50%;pointer-events:none;filter:blur(10px)}
+.ft-glow.g1{width:560px;height:560px;left:-180px;top:-280px;background:radial-gradient(circle,rgba(53,80,224,.45),rgba(53,80,224,0) 65%)}
+.ft-glow.g2{width:520px;height:520px;right:-160px;bottom:-200px;background:radial-gradient(circle,rgba(139,92,246,.4),rgba(139,92,246,0) 65%)}
+.ft-top{position:relative;display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));gap:40px}
+.ft-brand{display:flex;flex-direction:column;align-items:flex-start;gap:16px;max-width:360px}
+.ft-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.ft-tag{margin:0;font-size:15.5px;line-height:1.55;color:rgba(255,255,255,.72)}
+.ft-cta{height:46px;padding:0 22px;display:inline-flex;align-items:center;border-radius:999px;background:#FFFFFF;color:#1B2A8C;text-decoration:none;font-size:15px;font-weight:700;box-shadow:0 14px 30px -14px rgba(0,0,0,.6);transition:transform .2s}
+.ft-cta:hover{transform:translateY(-2px)}
+.ft-small{font-size:13px;color:rgba(255,255,255,.5)}
+.ft-col{display:flex;flex-direction:column;gap:12px;font-size:15px}
+.ft-col b{font-size:13px;font-weight:600;color:rgba(255,255,255,.5);margin-bottom:4px}
+.ft-col a{color:rgba(255,255,255,.86);text-decoration:none;width:fit-content;transition:color .15s}
+.ft-col a:hover,.ft-top-link:hover{color:#A9B8FF}
+.ft-bottom{position:relative;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:56px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font-size:13.5px;color:rgba(255,255,255,.55)}
+.ft-top-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.75);text-decoration:none}
+.ft-word{position:relative;margin-top:18px;font-family:Chillax,Inter,sans-serif;font-weight:600;font-size:clamp(4.5rem,19vw,17rem);line-height:.78;letter-spacing:-.05em;text-align:center;white-space:nowrap;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0) 92%);-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none;margin-bottom:-.12em}
+.ft a:focus-visible{outline:2px solid #A9B8FF;outline-offset:3px;border-radius:6px}
+@media (max-width:900px){.ft-top{grid-template-columns:repeat(3,minmax(0,1fr))}.ft-brand{grid-column:1/-1;max-width:none}}
+@media (max-width:560px){.ft-wrap{padding:0 12px 12px}.ft{border-radius:28px}.ft-top{grid-template-columns:1fr 1fr;gap:32px 24px}.ft-bottom{margin-top:40px}}
 </style>
 </helmet>
 <div style="background: #FFFFFF; color: #0E1330; font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 1.5; overflow-x: clip">
@@ -569,17 +592,26 @@ section[id]{scroll-margin-top:16px}
   </section>
 
   <!-- ================= FOOTER ================= -->
-  <footer style="border-top: 1px solid #ECEDF5">
-    <div style="max-width: 1280px; margin: 0 auto; padding: 40px 24px 56px; display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between">
-      <div style="display: flex; flex-direction: column; gap: 10px; max-width: 300px">
-        <span style="display: flex; align-items: center; gap: 10px"><img src="/_blob/743d1af1665c160f2bafa041f4fb2f43" alt="" style="height: 28px; width: auto; display: block"><img src="/_blob/efc2a2b17eecf2cd9d49a2072b584fbe" alt="CraftlyAi" style="height: 20px; width: auto; display: block"></span>
-        <span style="font-size: 14px; color: #6B7092">The one app your business runs on.</span>
+  <footer class="ft-wrap">
+    <div class="ft">
+      <div class="ft-glow g1" aria-hidden="true"></div>
+      <div class="ft-glow g2" aria-hidden="true"></div>
+      <div class="ft-top">
+        <div class="ft-brand">
+          <a href="#top" class="ft-logo" aria-label="CraftlyAI, back to top"><img src="/assets/logo-mark.svg" alt="" style="height: 32px; width: auto; display: block"><img src="/assets/logo-wordmark-white.svg" alt="CraftlyAi" style="height: 22px; width: auto; display: block"></a>
+          <p class="ft-tag">Quotes, projects, invoices and payments in one place, with Kraft doing the busywork.</p>
+          <a href="#book-demo" class="ft-cta">Book a demo</a>
+          <span class="ft-small">20 minutes · We reply within a day</span>
+        </div>
+        <nav class="ft-col" aria-label="Product"><b>Product</b><a href="#tour">Tour</a><a href="#demo">Watch the film</a><a href="#kraft">Kraft</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+        <nav class="ft-col" aria-label="Get started"><b>Get started</b><a href="#book-demo">Book a demo</a><a href="#pricing">Compare plans</a></nav>
+        <nav class="ft-col" aria-label="Legal"><b>Legal</b><a href="https://app.craftlyai.app/privacy">Privacy</a><a href="https://app.craftlyai.app/terms">Terms</a></nav>
       </div>
-      <div style="display: flex; flex-wrap: wrap; gap: 48px; font-size: 14px">
-        <nav style="display: flex; flex-direction: column; gap: 10px" aria-label="Product"><b style="font-weight: 600">Product</b><a href="#tour" style="color: #4A4F6E; text-decoration: none">Tour</a><a href="#kraft" style="color: #4A4F6E; text-decoration: none">Kraft</a><a href="#pricing" style="color: #4A4F6E; text-decoration: none">Pricing</a></nav>
-        <nav style="display: flex; flex-direction: column; gap: 10px" aria-label="Account"><b style="font-weight: 600">Account</b><a href="#book-demo" style="color: #4A4F6E; text-decoration: none">Book a demo</a></nav>
-        <nav style="display: flex; flex-direction: column; gap: 10px" aria-label="Legal"><b style="font-weight: 600">Legal</b><a href="https://app.craftlyai.app/privacy" style="color: #4A4F6E; text-decoration: none">Privacy</a><a href="https://app.craftlyai.app/terms" style="color: #4A4F6E; text-decoration: none">Terms</a></nav>
+      <div class="ft-bottom">
+        <span>© 2026 CraftlyAI. All rights reserved.</span>
+        <a href="#top" class="ft-top-link">Back to top <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
       </div>
+      <div class="ft-word" aria-hidden="true">CraftlyAI</div>
     </div>
   </footer>
 </div>
