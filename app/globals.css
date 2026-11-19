@@ -51,9 +51,10 @@ a{color:#3550E0}a:hover{color:#2D45C8}
 .kf{width:24px;height:24px;border-radius:7px;background:linear-gradient(140deg,#5B8CFF,#2D5BFF 55%,#6D45E0);display:inline-flex;align-items:center;justify-content:center;gap:3px;flex-shrink:0}
 .kf i{width:3.5px;height:8px;border-radius:2px;background:#FFFFFF;display:block}
 .okc{width:18px;height:18px;border-radius:50%;background:#1F8A52;color:#FFFFFF;font-size:11px;font-weight:700;display:grid;place-items:center;flex-shrink:0}
-.nl{color:#3B4166;text-decoration:none;padding:7px 14px;border-radius:10px;transition:background .15s,color .15s}
-.nl:hover{background:#EEF0FF;color:#3550E0}
-.ml{color:#0E1330;text-decoration:none;padding:12px 10px;border-radius:10px;font-size:16px;font-weight:500}
+.glass{background:linear-gradient(180deg,rgba(255,255,255,0.72),rgba(255,255,255,0.42));-webkit-backdrop-filter:blur(18px) saturate(1.8);backdrop-filter:blur(18px) saturate(1.8);border:1px solid rgba(255,255,255,0.75);box-shadow:0 10px 30px -14px rgba(30,40,110,0.35),0 2px 6px -2px rgba(30,40,110,0.08),inset 0 1px 0 rgba(255,255,255,0.9),inset 0 -1px 0 rgba(255,255,255,0.25)}
+.nl{color:#3B4166;text-decoration:none;padding:9px 16px;border-radius:999px;transition:background .2s,color .2s,box-shadow .2s}
+.nl:hover{background:rgba(255,255,255,0.85);color:#3550E0;box-shadow:0 4px 12px -6px rgba(53,80,224,0.45),inset 0 1px 0 #FFFFFF}
+.ml{color:#0E1330;text-decoration:none;padding:12px 14px;border-radius:999px;font-size:16px;font-weight:500}
 .ml:hover{background:#F4F5FB}
 .menu-btn{display:none}
 html{scroll-behavior:smooth}
