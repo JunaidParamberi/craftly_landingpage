@@ -143,6 +143,8 @@ def emit(n, scope, ind=0):
         a = dict(n.attrs); cond = ref(HOLE.fullmatch(a["value"].strip()).group(1), scope)
         inner = "".join(emit(k, scope, ind + 1) for k in n.kids)
         return f"{{{cond} && (<>{inner}</>)}}"
+    if n.tag == "book-demo-form":
+        return "<BookDemoForm />"
     if n.tag == "video":  # custom branded player instead of native controls
         va = dict(n.attrs)
         return f'<FilmPlayer src={json.dumps(va.get("src", ""))} poster={json.dumps(va.get("poster", ""))} label={json.dumps(va.get("aria-label", "Product film"))} />'
@@ -170,6 +172,7 @@ header = '''// @ts-nocheck
 // Generated from the CraftlyAI landing v3 design (Landing3.dc.html) by dc2jsx.py.
 import React from "react";
 import FilmPlayer from "./film-player";
+import BookDemoForm from "./book-demo-form";
 
 // turn a CSS declaration string (with live values) into a React style object
 function css(s: string): React.CSSProperties {

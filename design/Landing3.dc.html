@@ -114,8 +114,7 @@ section[id]{scroll-margin-top:16px}
         <a href="#faq" class="nl">FAQ</a>
       </nav>
       <div style="display: flex; gap: 6px; align-items: center">
-        <a href="https://app.craftlyai.app/auth/login" class="hdr-login nl glass" style="font-weight: 500; color: #0E1330; height: 44px; padding: 0 18px; display: inline-flex; align-items: center; border-radius: 999px">Log in</a>
-        <a href="https://app.craftlyai.app/auth/sign-up" class="hdr-cta" style="height: 44px; padding: 0 22px; display: inline-flex; align-items: center; border-radius: 999px; background: #0E1330; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 600; box-shadow: 0 10px 24px -12px rgba(14,19,48,0.7), inset 0 1px 0 rgba(255,255,255,0.18)">Start free</a>
+        <a href="#book-demo" class="hdr-cta" style="height: 44px; padding: 0 22px; display: inline-flex; align-items: center; border-radius: 999px; background: #0E1330; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 600; box-shadow: 0 10px 24px -12px rgba(14,19,48,0.7), inset 0 1px 0 rgba(255,255,255,0.18)">Book a demo</a>
         <button type="button" class="menu-btn glass" onClick="{{ toggleNav }}" aria-label="Open menu" aria-expanded="{{ navOpenStr }}" style="width: 44px; height: 44px; border-radius: 999px; align-items: center; justify-content: center; cursor: pointer; color: #0E1330"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="{{ menuIcon }}"></path></svg></button>
       </div>
     </div>
@@ -126,7 +125,7 @@ section[id]{scroll-margin-top:16px}
         <a href="#kraft" onClick="{{ closeNav }}" class="ml">Kraft</a>
         <a href="#pricing" onClick="{{ closeNav }}" class="ml">Pricing</a>
         <a href="#faq" onClick="{{ closeNav }}" class="ml">FAQ</a>
-        <a href="https://app.craftlyai.app/auth/login" class="ml">Log in</a>
+        <a href="#book-demo" onClick="{{ closeNav }}" class="ml" style="color: #3550E0">Book a demo</a>
       </nav>
     </sc-if>
   </header>
@@ -147,10 +146,10 @@ section[id]{scroll-margin-top:16px}
       <h1 class="hero-h1" style="margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(3.25rem, 8.5vw, 7rem); line-height: 0.92; letter-spacing: -0.05em; text-wrap: balance">The one app your<br>whole business <span style="background: linear-gradient(95deg, #3550E0 0%, #8B5CF6 45%, #FF7A59 100%); -webkit-background-clip: text; background-clip: text; color: transparent">runs on.</span></h1>
       <p style="margin: 0; font-size: clamp(1.1rem, 1.6vw, 1.3rem); line-height: 1.55; color: #3B4166; max-width: 40em">Quotes, invoices, payments, projects and follow-ups in one place, with Kraft, an assistant that does the paperwork and asks before anything goes out.</p>
       <div class="cta-row" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: center">
-        <a href="https://app.craftlyai.app/auth/sign-up" style="height: 58px; padding: 0 30px; display: inline-flex; align-items: center; border-radius: 16px; background: linear-gradient(140deg, #3550E0, #5B42E8); color: #FFFFFF; text-decoration: none; font-size: 18px; font-weight: 600; box-shadow: 0 18px 40px -14px rgba(53,80,224,0.75)">Start free</a>
+        <a href="#book-demo" style="height: 58px; padding: 0 30px; display: inline-flex; align-items: center; border-radius: 16px; background: linear-gradient(140deg, #3550E0, #5B42E8); color: #FFFFFF; text-decoration: none; font-size: 18px; font-weight: 600; box-shadow: 0 18px 40px -14px rgba(53,80,224,0.75)">Book a demo</a>
         <a href="#demo" style="height: 58px; padding: 0 24px; display: inline-flex; align-items: center; gap: 10px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E0E2EE; color: #0E1330; text-decoration: none; font-size: 17px"><span style="width: 26px; height: 26px; border-radius: 50%; background: #EEF0FF; display: grid; place-items: center" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 1l7 4-7 4z" fill="#3550E0"></path></svg></span>Watch the 60-second demo</a>
       </div>
-      <p style="margin: 0; font-size: 14px; color: #6B7092">Free forever plan · No credit card · Ready in about 3 minutes</p>
+      <p style="margin: 0; font-size: 14px; color: #6B7092">A 20-minute walkthrough · Built around how you work · We reply within a day</p>
     </div>
 
     <!-- Live app prototype (clickable) -->
@@ -522,7 +521,7 @@ section[id]{scroll-margin-top:16px}
   <!-- ================= PRICING ================= -->
   <section class="sec" id="pricing" style="max-width: 1280px; margin: 0 auto; padding: 0 24px 110px; display: flex; flex-direction: column; gap: 40px">
     <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px">
-      <h2 style="margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(2.25rem, 5vw, 4rem); line-height: 0.98; letter-spacing: -0.04em">Start free. Grow when you're ready.</h2>
+      <h2 style="margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(2.25rem, 5vw, 4rem); line-height: 0.98; letter-spacing: -0.04em">Simple plans. Grow when you're ready.</h2>
       <p style="margin: 0; font-size: 17px; color: #3B4166">Prices in AED. Cancel any time.</p>
       <div style="display: inline-flex; background: #F4F5FA; border-radius: 14px; padding: 5px" role="group" aria-label="Billing period">
         <button type="button" onClick="{{showMonthly}}" aria-pressed="{{monthlyOn}}" style="{{monthlyStyle}}">Monthly</button>
@@ -537,7 +536,7 @@ section[id]{scroll-margin-top:16px}
           <span style="{{p.saveStyle}}">{{p.saving}}</span>
           <span style="{{p.blurbStyle}}">{{p.blurb}}</span>
           <div style="{{p.listStyle}}"><sc-for list="{{p.features}}" as="f" hint-placeholder-count="4"><span>✓ {{f}}</span></sc-for></div>
-          <a href="https://app.craftlyai.app/auth/sign-up" style="{{p.ctaStyle}}">{{p.cta}}</a>
+          <a href="#book-demo" style="{{p.ctaStyle}}">{{p.cta}}</a>
         </div>
       </sc-for>
     </div>
@@ -559,13 +558,13 @@ section[id]{scroll-margin-top:16px}
   </section>
 
   <!-- ================= FINAL CTA ================= -->
-  <section class="sec" style="padding: 100px 24px">
+  <section id="book-demo" class="sec" style="padding: 100px 24px; scroll-margin-top: 24px">
     <div style="position: relative; overflow: hidden; max-width: 1280px; margin: 0 auto; border-radius: 40px; background: linear-gradient(120deg, #FF7A59 0%, #3550E0 50%, #8B5CF6 100%); color: #FFFFFF; padding: clamp(48px, 8vw, 110px) clamp(24px, 6vw, 80px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; box-sizing: border-box">
       <div class="b3" style="position: absolute; width: 520px; height: 520px; left: 10%; top: -260px; border-radius: 50%; background: radial-gradient(circle, rgba(255,200,87,0.6), rgba(255,200,87,0) 65%)" aria-hidden="true"></div>
       <div class="b1" style="position: absolute; width: 520px; height: 520px; right: 5%; bottom: -300px; border-radius: 50%; background: radial-gradient(circle, rgba(43,212,160,0.5), rgba(43,212,160,0) 65%)" aria-hidden="true"></div>
-      <h2 style="position: relative; margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(2.75rem, 7vw, 5.5rem); line-height: 0.95; letter-spacing: -0.045em; max-width: 12em; text-wrap: balance">Send your next invoice from CraftlyAI.</h2>
-      <p style="position: relative; margin: 0; font-size: 19px; color: rgba(255,255,255,0.9)">Free plan · No card · Ready in about 3 minutes</p>
-      <a href="https://app.craftlyai.app/auth/sign-up" class="floaty" style="position: relative; height: 62px; padding: 0 36px; display: inline-flex; align-items: center; border-radius: 18px; background: #FFFFFF; color: #1B2A8C; text-decoration: none; font-size: 19px; font-weight: 700; box-shadow: 0 24px 50px -16px rgba(14,19,48,0.6)">Start free</a>
+      <h2 style="position: relative; margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(2.75rem, 7vw, 5.5rem); line-height: 0.95; letter-spacing: -0.045em; max-width: 12em; text-wrap: balance">See CraftlyAI on your own work.</h2>
+      <p style="position: relative; margin: 0; font-size: 19px; color: rgba(255,255,255,0.9); max-width: 34em">Book a 20-minute walkthrough. We set it up around your clients, quotes and invoices, and reply within a day.</p>
+      <book-demo-form></book-demo-form>
     </div>
   </section>
 
@@ -578,7 +577,7 @@ section[id]{scroll-margin-top:16px}
       </div>
       <div style="display: flex; flex-wrap: wrap; gap: 48px; font-size: 14px">
         <nav style="display: flex; flex-direction: column; gap: 10px" aria-label="Product"><b style="font-weight: 600">Product</b><a href="#tour" style="color: #4A4F6E; text-decoration: none">Tour</a><a href="#kraft" style="color: #4A4F6E; text-decoration: none">Kraft</a><a href="#pricing" style="color: #4A4F6E; text-decoration: none">Pricing</a></nav>
-        <nav style="display: flex; flex-direction: column; gap: 10px" aria-label="Account"><b style="font-weight: 600">Account</b><a href="https://app.craftlyai.app/auth/sign-up" style="color: #4A4F6E; text-decoration: none">Start free</a><a href="https://app.craftlyai.app/auth/login" style="color: #4A4F6E; text-decoration: none">Log in</a></nav>
+        <nav style="display: flex; flex-direction: column; gap: 10px" aria-label="Account"><b style="font-weight: 600">Account</b><a href="#book-demo" style="color: #4A4F6E; text-decoration: none">Book a demo</a></nav>
         <nav style="display: flex; flex-direction: column; gap: 10px" aria-label="Legal"><b style="font-weight: 600">Legal</b><a href="https://app.craftlyai.app/privacy" style="color: #4A4F6E; text-decoration: none">Privacy</a><a href="https://app.craftlyai.app/terms" style="color: #4A4F6E; text-decoration: none">Terms</a></nav>
       </div>
     </div>
@@ -665,10 +664,10 @@ class Component extends DCLogic {
     }));
     const seg = (on) => 'height: 42px; padding: 0 16px; border: 0; border-radius: 10px; font: inherit; font-size: 14px; cursor: pointer; background: ' + (on ? '#FFFFFF' : 'transparent') + '; color: #0E1330; font-weight: ' + (on ? '700' : '500') + '; box-shadow: ' + (on ? '0 4px 10px -6px rgba(14,19,48,0.3)' : 'none');
     const defs = [
-      { name: 'Free', m: 0, y: 0, blurb: 'To try it on real work.', features: ['3 clients', '5 documents a month', 'Client portal', 'Kraft: 20 questions a month'], cta: 'Start free' },
-      { name: 'Starter', m: 69, y: 55, pick: true, blurb: 'For a busy, growing business.', features: ['15 clients', 'Unlimited documents', 'Kraft can draft and record', '100 Kraft actions a month'], cta: 'Start with Starter' },
-      { name: 'Pro', m: 179, y: 143, blurb: 'No limits, every tool.', features: ['Unlimited clients', 'All tools', 'Your own portal domain', 'API access'], cta: 'Start with Pro' },
-      { name: 'Agency', m: 369, y: 295, blurb: 'For teams and agencies.', features: ['Everything in Pro', '5 team members', 'Shared workspace', 'White-label portal'], cta: 'Start with Agency' },
+      { name: 'Free', m: 0, y: 0, blurb: 'To try it on real work.', features: ['3 clients', '5 documents a month', 'Client portal', 'Kraft: 20 questions a month'], cta: 'Book a demo' },
+      { name: 'Starter', m: 69, y: 55, pick: true, blurb: 'For a busy, growing business.', features: ['15 clients', 'Unlimited documents', 'Kraft can draft and record', '100 Kraft actions a month'], cta: 'Book a demo' },
+      { name: 'Pro', m: 179, y: 143, blurb: 'No limits, every tool.', features: ['Unlimited clients', 'All tools', 'Your own portal domain', 'API access'], cta: 'Book a demo' },
+      { name: 'Agency', m: 369, y: 295, blurb: 'For teams and agencies.', features: ['Everything in Pro', '5 team members', 'Shared workspace', 'White-label portal'], cta: 'Book a demo' },
     ];
     const plans = defs.map((d) => {
       const price = annual ? d.y : d.m;
