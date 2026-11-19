@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CraftlyAI landing page v3</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+@font-face{font-family:"Chillax";src:url("/_blob/157b69f699fe7694cc20be404c10a1a7") format("woff2");font-weight:200 700;font-display:swap}
+body{margin:0;background:#FFFFFF}
+a{color:#3550E0}a:hover{color:#2D45C8}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(90px,50px) scale(1.15)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1.1)}50%{transform:translate(-100px,60px) scale(.9)}}
+@keyframes drift3{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,-60px)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes settle{from{transform:perspective(1600px) rotateX(16deg) translateY(40px);opacity:.4}to{transform:perspective(1600px) rotateX(5deg);opacity:1}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes progress{from{width:0}to{width:100%}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fill1{0%,10%{width:0}35%,90%{width:33%}100%{width:0}}
+@keyframes fill2{0%,25%{width:0}50%,90%{width:40%}100%{width:0}}
+@keyframes fill3{0%,40%{width:0}65%,90%{width:27%}100%{width:0}}
+@keyframes bar{0%,10%{transform:scaleY(.2)}45%,90%{transform:scaleY(1)}100%{transform:scaleY(.2)}}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(255,122,89,.55)}100%{box-shadow:0 0 0 14px rgba(255,122,89,0)}}
+@keyframes ringb{0%{box-shadow:0 0 0 0 rgba(53,80,224,.55)}100%{box-shadow:0 0 0 14px rgba(53,80,224,0)}}
+@keyframes typing{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes reveal{0%,30%{opacity:0;transform:translateY(6px)}40%,100%{opacity:1;transform:none}}
+@keyframes tick{0%,40%{opacity:0;transform:scale(.4)}55%,100%{opacity:1;transform:none}}
+@keyframes check{0%,30%{background:#FFFFFF;border-color:#D9DBE8}40%,100%{background:#13865D;border-color:#13865D}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.b1{animation:drift1 16s ease-in-out infinite}.b2{animation:drift2 19s ease-in-out infinite}.b3{animation:drift3 14s ease-in-out infinite}
+.floaty{animation:floaty 6s ease-in-out infinite}.floaty2{animation:floaty 7s ease-in-out infinite reverse}.floaty3{animation:floaty 8s ease-in-out infinite}
+.settle{animation:settle 1.4s cubic-bezier(.2,.8,.2,1) both}
+.marquee{animation:marquee 40s linear infinite}
+.prog{animation:progress 5s linear both}
+.rise{animation:rise .5s ease-out both}
+.f1{animation:fill1 6s ease-in-out infinite}.f2{animation:fill2 6s ease-in-out infinite}.f3{animation:fill3 6s ease-in-out infinite}
+.bar{transform-origin:bottom;animation:bar 5s ease-in-out infinite}.bar.d2{animation-delay:.3s}.bar.d3{animation-delay:.6s}
+.ring{animation:ring 1.6s ease-out infinite}.ringb{animation:ringb 1.6s ease-out infinite}
+.dot{animation:typing 1s ease-in-out infinite}.dot.d2{animation-delay:.2s}.dot.d3{animation-delay:.4s}
+.reveal{animation:reveal 6s ease-out infinite}.tick{animation:tick 6s ease-out infinite}
+.check{animation:check 6s ease-out infinite}.check.d2{animation-delay:1s}.check.d3{animation-delay:2s}
+.pulse{animation:pulse 2s ease-in-out infinite}
+.spin{animation:spin 18s linear infinite}
+.pc{background:#FFFFFF;border:1px solid #ECECE7;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px}
+.pv{font-family:Chillax,Inter,sans-serif;font-weight:600;font-size:19px;letter-spacing:-0.01em}
+.nr{display:flex;align-items:center;gap:10px;background:#FFFFFF;border:1px solid #ECECE7;border-radius:10px;padding:10px 12px;flex-wrap:wrap}
+.ni{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-weight:700;font-size:13px;flex-shrink:0}
+.pb{height:30px;padding:0 10px;border-radius:8px;border:1px solid #E3E3DE;background:#FFFFFF;color:#14161A;font:inherit;font-weight:500;cursor:pointer}
+.pb:hover{background:#F4F4F1}
+.pill{height:22px;padding:0 8px;border-radius:999px;font-size:12px;font-weight:500;display:inline-flex;align-items:center}
+.col{background:#F4F4F1;border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px;min-height:230px}
+.ch{font-weight:600;font-size:13px}
+.tc{background:#FFFFFF;border-radius:10px;box-shadow:0 1px 2px rgba(20,22,26,.07),0 0 0 1px #ECECE7;padding:9px 11px;display:flex;flex-direction:column;gap:4px;text-align:left}
+.tcb{border:0;font:inherit;color:#14161A;cursor:pointer;transition:transform .15s}.tcb:hover{transform:translateY(-2px);box-shadow:0 10px 20px -10px rgba(20,22,26,.3),0 0 0 1px #3550E0}
+.tm{font-size:11.5px;color:#54585F}
+.sug{width:100%;height:36px;border-radius:10px;border:1px solid #ECECE7;background:#FFFFFF;font:inherit;color:#14161A;text-align:left;padding:0 12px;cursor:pointer;margin-top:4px}.sug:hover{border-color:#3550E0;background:#F6F7FF}
+.kf{width:24px;height:24px;border-radius:7px;background:linear-gradient(140deg,#5B8CFF,#2D5BFF 55%,#6D45E0);display:inline-flex;align-items:center;justify-content:center;gap:3px;flex-shrink:0}
+.kf i{width:3.5px;height:8px;border-radius:2px;background:#FFFFFF;display:block}
+.okc{width:18px;height:18px;border-radius:50%;background:#1F8A52;color:#FFFFFF;font-size:11px;font-weight:700;display:grid;place-items:center;flex-shrink:0}
+.glass{background:linear-gradient(180deg,rgba(255,255,255,0.72),rgba(255,255,255,0.42));-webkit-backdrop-filter:blur(18px) saturate(1.8);backdrop-filter:blur(18px) saturate(1.8);border:1px solid rgba(255,255,255,0.75);box-shadow:0 10px 30px -14px rgba(30,40,110,0.35),0 2px 6px -2px rgba(30,40,110,0.08),inset 0 1px 0 rgba(255,255,255,0.9),inset 0 -1px 0 rgba(255,255,255,0.25)}
+.nl{color:#3B4166;text-decoration:none;padding:9px 16px;border-radius:999px;transition:background .2s,color .2s,box-shadow .2s}
+.nl:hover{background:rgba(255,255,255,0.85);color:#3550E0;box-shadow:0 4px 12px -6px rgba(53,80,224,0.45),inset 0 1px 0 #FFFFFF}
+.ml{color:#0E1330;text-decoration:none;padding:12px 14px;border-radius:999px;font-size:16px;font-weight:500}
+.ml:hover{background:#F4F5FB}
+.menu-btn{display:none}
+html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:16px}
+.faq summary{cursor:pointer;list-style:none}.faq summary::-webkit-details-marker{display:none}
+@media (max-width:760px){.nav-links{display:none}.menu-btn{display:inline-flex!important}.hide-sm{display:none!important}
+.hdr{height:60px!important;padding:0 16px!important}
+.hdr-login{display:none!important}
+.logo-mark{height:26px!important}.logo-word{height:18px!important}
+.hdr-cta{height:38px!important;padding:0 14px!important;font-size:14px!important}
+.hero-copy{padding-top:28px!important;gap:18px!important}
+.hero-h1{font-size:2.6rem!important;letter-spacing:-0.035em!important}
+.cta-row{width:100%;flex-direction:column;align-items:stretch!important}
+.cta-row a{justify-content:center;width:100%;box-sizing:border-box}
+.app-wrap{margin-top:32px!important;padding:0 12px!important}
+.app-win{min-height:0!important}
+.pw{height:auto!important;min-height:560px}
+.app-main{padding:16px!important}
+.sec{padding-top:56px!important;padding-bottom:56px!important}
+.tour-tabs{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.tour-tabs>*{flex:0 0 auto;scroll-snap-align:start}
+.tour-tabs button{min-width:170px}
+.tour-stage{min-height:0!important;padding:20px!important;border-radius:24px!important}
+.tour-mock{min-height:0!important}
+.bento-tile{min-height:0!important;padding:22px!important}
+.plan-pick{transform:none!important}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+
+.ft-wrap{padding:0 24px 24px}
+.ft{position:relative;overflow:hidden;max-width:1280px;margin:0 auto;border-radius:40px;background:#0E1330;color:#FFFFFF;padding:clamp(40px,6vw,72px) clamp(24px,5vw,64px) 0;box-sizing:border-box}
+.ft-glow{position:absolute;border-radius:50%;pointer-events:none;filter:blur(10px)}
+.ft-glow.g1{width:560px;height:560px;left:-180px;top:-280px;background:radial-gradient(circle,rgba(53,80,224,.45),rgba(53,80,224,0) 65%)}
+.ft-glow.g2{width:520px;height:520px;right:-160px;bottom:-200px;background:radial-gradient(circle,rgba(139,92,246,.4),rgba(139,92,246,0) 65%)}
+.ft-top{position:relative;display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));gap:40px}
+.ft-brand{display:flex;flex-direction:column;align-items:flex-start;gap:16px;max-width:360px}
+.ft-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.ft-tag{margin:0;font-size:15.5px;line-height:1.55;color:rgba(255,255,255,.72)}
+.ft-cta{height:46px;padding:0 22px;display:inline-flex;align-items:center;border-radius:999px;background:#FFFFFF;color:#1B2A8C;text-decoration:none;font-size:15px;font-weight:700;box-shadow:0 14px 30px -14px rgba(0,0,0,.6);transition:transform .2s}
+.ft-cta:hover{transform:translateY(-2px)}
+.ft-small{font-size:13px;color:rgba(255,255,255,.5)}
+.ft-col{display:flex;flex-direction:column;gap:12px;font-size:15px}
+.ft-col b{font-size:13px;font-weight:600;color:rgba(255,255,255,.5);margin-bottom:4px}
+.ft-col a{color:rgba(255,255,255,.86);text-decoration:none;width:fit-content;transition:color .15s}
+.ft-col a:hover,.ft-top-link:hover{color:#A9B8FF}
+.ft-bottom{position:relative;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:56px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font-size:13.5px;color:rgba(255,255,255,.55)}
+.ft-top-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.75);text-decoration:none}
+.ft-word{position:relative;margin-top:18px;font-family:Chillax,Inter,sans-serif;font-weight:600;font-size:clamp(4.5rem,19vw,17rem);line-height:.78;letter-spacing:-.05em;text-align:center;white-space:nowrap;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0) 92%);-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none;margin-bottom:-.12em}
+.ft a:focus-visible{outline:2px solid #A9B8FF;outline-offset:3px;border-radius:6px}
+@media (max-width:900px){.ft-top{grid-template-columns:repeat(3,minmax(0,1fr))}.ft-brand{grid-column:1/-1;max-width:none}}
+@media (max-width:560px){.ft-wrap{padding:0 12px 12px}.ft{border-radius:28px}.ft-top{grid-template-columns:1fr 1fr;gap:32px 24px}.ft-bottom{margin-top:40px}}
+</style>
+</helmet>
+<div style="background: #FFFFFF; color: #0E1330; font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 1.5; overflow-x: clip">
+
+  <!-- ================= NAV (sticky) ================= -->
+  <header style="position: absolute; top: 0; left: 0; right: 0; z-index: 60">
+    <div class="hdr" style="max-width: 1280px; margin: 0 auto; height: 76px; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+      <a href="#top" onClick="{{ closeNav }}" style="display: flex; align-items: center; gap: 10px; color: #0E1330; text-decoration: none" aria-label="CraftlyAi home">
+        <img src="/_blob/743d1af1665c160f2bafa041f4fb2f43" class="logo-mark" alt="" style="height: 30px; width: auto; display: block">
+        <img src="/_blob/efc2a2b17eecf2cd9d49a2072b584fbe" class="logo-word" alt="CraftlyAi" style="height: 22px; width: auto; display: block">
+      </a>
+      <nav class="nav-links glass" style="display: flex; gap: 2px; font-size: 15px; padding: 6px; border-radius: 999px" aria-label="Main">
+        <a href="#tour" class="nl">Product</a>
+        <a href="#demo" class="nl">Demo</a>
+        <a href="#kraft" class="nl">Kraft</a>
+        <a href="#pricing" class="nl">Pricing</a>
+        <a href="#faq" class="nl">FAQ</a>
+      </nav>
+      <div style="display: flex; gap: 6px; align-items: center">
+        <a href="#book-demo" class="hdr-cta" style="height: 44px; padding: 0 22px; display: inline-flex; align-items: center; border-radius: 999px; background: #0E1330; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 600; box-shadow: 0 10px 24px -12px rgba(14,19,48,0.7), inset 0 1px 0 rgba(255,255,255,0.18)">Book a demo</a>
+        <button type="button" class="menu-btn glass" onClick="{{ toggleNav }}" aria-label="Open menu" aria-expanded="{{ navOpenStr }}" style="width: 44px; height: 44px; border-radius: 999px; align-items: center; justify-content: center; cursor: pointer; color: #0E1330"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="{{ menuIcon }}"></path></svg></button>
+      </div>
+    </div>
+    <sc-if value="{{ navOpen }}" hint-placeholder-val="{{ false }}">
+      <nav class="rise glass" aria-label="Mobile" style="position: absolute; left: 12px; right: 12px; top: 68px; display: flex; flex-direction: column; padding: 8px; gap: 2px; border-radius: 26px">
+        <a href="#tour" onClick="{{ closeNav }}" class="ml">Product</a>
+        <a href="#demo" onClick="{{ closeNav }}" class="ml">Demo</a>
+        <a href="#kraft" onClick="{{ closeNav }}" class="ml">Kraft</a>
+        <a href="#pricing" onClick="{{ closeNav }}" class="ml">Pricing</a>
+        <a href="#faq" onClick="{{ closeNav }}" class="ml">FAQ</a>
+        <a href="#book-demo" onClick="{{ closeNav }}" class="ml" style="color: #3550E0">Book a demo</a>
+      </nav>
+    </sc-if>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section id="top" style="position: relative; overflow: hidden; padding-top: 76px; background: radial-gradient(1200px 600px at 50% -10%, #DCE3FF 0%, rgba(220,227,255,0) 70%), #FFFFFF">
+    <div class="b1" style="position: absolute; width: 520px; height: 520px; left: -140px; top: 120px; border-radius: 50%; background: radial-gradient(circle, rgba(255,122,89,0.28), rgba(255,122,89,0) 65%)" aria-hidden="true"></div>
+    <div class="b2" style="position: absolute; width: 620px; height: 620px; right: -200px; top: 40px; border-radius: 50%; background: radial-gradient(circle, rgba(139,92,246,0.28), rgba(139,92,246,0) 65%)" aria-hidden="true"></div>
+    <div class="b3" style="position: absolute; width: 560px; height: 560px; left: 40%; top: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(43,212,160,0.25), rgba(43,212,160,0) 65%)" aria-hidden="true"></div>
+
+
+
+    <div class="hero-copy" style="position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 64px 24px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px">
+      <a href="#tour" style="height: 36px; padding: 0 16px 0 6px; border-radius: 999px; background: #FFFFFF; border: 1px solid #ECEDF5; box-shadow: 0 6px 16px -10px rgba(14,19,48,0.25); color: #0E1330; text-decoration: none; font-size: 14px; display: inline-flex; align-items: center; gap: 10px">
+        <span style="height: 26px; padding: 0 10px; border-radius: 999px; background: linear-gradient(90deg, #FF7A59, #8B5CF6); color: #FFFFFF; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center">New</span>
+        Split one transfer across invoices
+      </a>
+      <h1 class="hero-h1" style="margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(3.25rem, 8.5vw, 7rem); line-height: 0.92; letter-spacing: -0.05em; text-wrap: balance">The one app your<br>whole business <span style="background: linear-gradient(95deg, #3550E0 0%, #8B5CF6 45%, #FF7A59 100%); -webkit-background-clip: text; background-clip: text; color: transparent">runs on.</span></h1>
+      <p style="margin: 0; font-size: clamp(1.1rem, 1.6vw, 1.3rem); line-height: 1.55; color: #3B4166; max-width: 40em">Quotes, invoices, payments, projects and follow-ups in one place, with Kraft, an assistant that does the paperwork and asks before anything goes out.</p>
+      <div class="cta-row" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: center">
+        <a href="#book-demo" style="height: 58px; padding: 0 30px; display: inline-flex; align-items: center; border-radius: 16px; background: linear-gradient(140deg, #3550E0, #5B42E8); color: #FFFFFF; text-decoration: none; font-size: 18px; font-weight: 600; box-shadow: 0 18px 40px -14px rgba(53,80,224,0.75)">Book a demo</a>
+        <a href="#demo" style="height: 58px; padding: 0 24px; display: inline-flex; align-items: center; gap: 10px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E0E2EE; color: #0E1330; text-decoration: none; font-size: 17px"><span style="width: 26px; height: 26px; border-radius: 50%; background: #EEF0FF; display: grid; place-items: center" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 1l7 4-7 4z" fill="#3550E0"></path></svg></span>Watch the 60-second demo</a>
+      </div>
+      <p style="margin: 0; font-size: 14px; color: #6B7092">A 20-minute walkthrough · Built around how you work · We reply within a day</p>
+    </div>
+
+    <!-- Live app prototype (clickable) -->
+    <div class="app-wrap" style="position: relative; z-index: 2; max-width: 1240px; margin: 56px auto 0; padding: 0 24px">
+      <div class="settle" style="border-radius: 22px; padding: 8px; background: #E9E9E4; box-shadow: 0 60px 120px -40px rgba(53,80,224,0.45), 0 30px 60px -30px rgba(14,19,48,0.35), 0 0 0 1px rgba(14,19,48,0.06); text-align: left">
+        <div class="pw" style="display: flex; gap: 8px; height: 640px; font-size: 13px; color: #14161A">
+
+          <aside class="p-rail hide-sm" style="width: 52px; flex-shrink: 0; border-radius: 14px; background: #111216; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 0">
+            <span style="width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(140deg, #5B8CFF, #2D5BFF); display: grid; place-items: center; margin-bottom: 8px"><img src="/_blob/743d1af1665c160f2bafa041f4fb2f43" alt="" style="height: 18px; width: auto; filter: brightness(0) invert(1)"></span>
+            <sc-for list="{{ rail }}" as="r" hint-placeholder-count="4">
+              <button type="button" aria-label="{{ r.label }}" title="{{ r.label }}" onClick="{{ r.go }}" style="{{ r.style }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ r.d }}"></path></svg></button>
+            </sc-for>
+          </aside>
+
+          <div style="flex: 1; min-width: 0; border-radius: 14px; background: #FBFBF9; display: flex; flex-direction: column; overflow: hidden; position: relative">
+            <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}"><div class="rise" role="status" style="position: absolute; right: 16px; top: 56px; z-index: 5; display: flex; gap: 10px; align-items: center; padding: 10px 14px 10px 10px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 16px 32px -10px rgba(20,22,26,0.25), 0 0 0 1px #ECECE7"><span class="okc" style="width: 24px; height: 24px; font-size: 13px">✓</span><span style="display: flex; flex-direction: column"><b style="font-size: 13px; font-weight: 600">{{ toastT }}</b><span style="font-size: 12px; color: #54585F">{{ toastS }}</span></span></div></sc-if>
+            <div style="height: 46px; flex-shrink: 0; border-bottom: 1px solid #ECECE7; display: flex; align-items: center; gap: 10px; padding: 0 18px; color: #54585F">
+              <span>{{ crumbA }}</span><span style="color: #B7BAC2">›</span><b style="color: #14161A; font-weight: 500">{{ crumbB }}</b>
+              <span class="hide-sm" style="margin-left: auto; width: 200px; height: 30px; border-radius: 8px; background: #F4F4F1; display: flex; align-items: center; padding: 0 10px; color: #6B7079">Search<span style="margin-left: auto; font-size: 11px; border: 1px solid #E3E3DE; background: #FFFFFF; border-radius: 4px; padding: 0 5px">⌘K</span></span>
+              <span style="width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #FF7847, #C13B7A); color: #FFFFFF; font-size: 11px; font-weight: 600; display: grid; place-items: center">NH</span>
+            </div>
+
+            <div style="flex: 1; min-height: 0; overflow: auto; padding: 22px">
+              <sc-if value="{{ pgDash }}" hint-placeholder-val="{{ true }}">
+                <div style="display: flex; flex-direction: column; gap: 16px">
+                  <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+                    <div><div style="font-size: 11px; letter-spacing: 0.04em; color: #6B7079; font-weight: 500">TUESDAY, NOV 11</div><div style="font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: 22px; margin-top: 2px">Good morning, Nadia.</div><div style="color: #54585F; margin-top: 2px">4 things need you · AED 19,000 outstanding</div></div>
+                    <button type="button" onClick="{{ goDocs }}" style="height: 32px; padding: 0 12px; border: 0; border-radius: 8px; background: #3550E0; color: #FFFFFF; font: inherit; font-weight: 500; cursor: pointer">+ New invoice</button>
+                  </div>
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
+                    <div class="pc"><div style="color: #54585F">Revenue this month</div><b class="pv">AED 41,500</b><span style="font-size: 12px; color: #1F8A52">↗ 12% vs last month</span></div>
+                    <div class="pc"><div style="color: #54585F">Outstanding</div><b class="pv">{{ outstanding }}</b><span style="font-size: 12px; color: #54585F">{{ outSub }}</span></div>
+                    <div class="pc" style="border-color: #EFC9C9"><div style="color: #54585F">Overdue</div><b class="pv">{{ overdue }}</b><span style="font-size: 12px; color: #C13838">{{ overdueSub }}</span></div>
+                    <div class="pc"><div style="color: #54585F">Avg. pay time</div><b class="pv">12 days</b><span style="font-size: 12px; color: #54585F">across paid invoices</span></div>
+                  </div>
+                  <div style="display: flex; gap: 14px; flex-wrap: wrap">
+                    <div style="flex: 999 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+                      <b style="font-size: 14px; font-weight: 600">Needs you</b>
+                      <div class="nr"><span class="ni" style="background: #FBE9E9; color: #C13838">!</span><div style="flex: 1; min-width: 0"><div style="font-weight: 500; font-size: 13.5px">Invoice #INV-0043 · AED 8,000</div><div style="font-size: 12px; color: #6B7079">Al Noor Trading · {{ lateText }}</div></div><button type="button" onClick="{{ askOverdue }}" class="pb">Send reminder</button><button type="button" onClick="{{ payIt }}" class="pb">{{ payLabel }}</button></div>
+                      <div class="nr"><span class="ni" style="background: #EAEEFC; color: #3550E0">Q</span><div style="flex: 1; min-width: 0"><div style="font-weight: 500; font-size: 13.5px">QUO-0019 approved by Huda</div><div style="font-size: 12px; color: #6B7079">Al Noor Trading · Website phase 2</div></div><button type="button" onClick="{{ goDocs }}" class="pb">Open quote</button></div>
+                      <div class="nr"><span class="ni" style="background: #FAF0DD; color: #8A5A10">P</span><div style="flex: 1; min-width: 0"><div style="font-weight: 500; font-size: 13.5px">Checkout build due Friday</div><div style="font-size: 12px; color: #6B7079">Website phase 2</div></div><button type="button" onClick="{{ goProj }}" class="pb">Open project</button></div>
+                    </div>
+                    <div style="flex: 1 1 240px; min-width: 0; background: #FFFFFF; border: 1px solid #ECECE7; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px">
+                      <b style="font-size: 14px; font-weight: 600">Today's brief</b>
+                      <span style="color: #3B3F46; line-height: 1.55">Al Noor's INV-0043 is 3 days late. Website phase 2 is on track at 75%, launching 28 Nov.</span>
+                      <div style="display: flex; align-items: flex-end; gap: 6px; height: 70px; margin-top: auto" aria-hidden="true"><span class="bar" style="flex: 1; height: 40%; border-radius: 4px; background: #DCE3FF"></span><span class="bar d2" style="flex: 1; height: 60%; border-radius: 4px; background: #B0BCF6"></span><span class="bar d3" style="flex: 1; height: 50%; border-radius: 4px; background: #6E83F0"></span><span class="bar" style="flex: 1; height: 85%; border-radius: 4px; background: #3550E0"></span></div>
+                    </div>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ pgProj }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; flex-direction: column; gap: 14px">
+                  <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"><b style="font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: 20px">Website phase 2</b><span class="pill" style="background: #E6F2EB; color: #1F8A52">On track</span><span class="pill" style="background: #F1F1EE; color: #54585F">Al Noor Trading</span><span class="pill" style="background: #F1F1EE; color: #54585F">Due 28 Nov</span></div>
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px; border-top: 1px solid #ECECE7; border-bottom: 1px solid #ECECE7; padding: 12px 0">
+                    <div><div style="color: #54585F">Work</div><b style="font-size: 14px">{{ workText }}</b><div style="height: 3px; background: #ECECE7; border-radius: 2px; margin-top: 8px; overflow: hidden"><div style="{{ workBar }}"></div></div></div>
+                    <div><div style="color: #54585F">Time</div><b style="font-size: 14px">{{ timeText }}</b><div style="height: 3px; background: #ECECE7; border-radius: 2px; margin-top: 8px; overflow: hidden"><div style="width: 62%; height: 100%; background: #14161A"></div></div></div>
+                    <div><div style="color: #54585F">Money</div><b style="font-size: 14px">AED 6,800 profit · 85%</b><div style="height: 3px; background: #ECECE7; border-radius: 2px; margin-top: 8px; overflow: hidden"><div style="width: 85%; height: 100%; background: #1F8A52"></div></div></div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+                    <div class="col"><div class="ch">● To do <span style="color: #6B7079">1</span></div><div class="tc"><b style="font-weight: 500">Launch and QA</b><span class="tm">Med · 26 Nov</span></div></div>
+                    <div class="col"><div class="ch" style="color: #3550E0">● <span style="color: #14161A">In progress</span> <span style="color: #6B7079">{{ ipCount }}</span></div>
+                      <sc-if value="{{ notDone }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ finishTask }}" class="tc tcb"><b style="font-weight: 500">Checkout build</b><span class="tm">High · Fri · 1h 30m · click to finish</span></button></sc-if>
+                    </div>
+                    <div class="col"><div class="ch" style="color: #1F8A52">● <span style="color: #14161A">Done</span> <span style="color: #6B7079">{{ doneCount }}</span></div>
+                      <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}"><div class="tc rise"><b style="font-weight: 500; color: #6B7079">Checkout build</b><span class="tm">✓ Done · 2h 15m</span></div></sc-if>
+                      <div class="tc"><b style="font-weight: 500; color: #6B7079">Homepage design</b><span class="tm">✓ Done · 8h</span></div>
+                      <div class="tc"><b style="font-weight: 500; color: #6B7079">Wireframes</b><span class="tm">✓ Done · 6h</span></div>
+                    </div>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ pgDocs }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; gap: 14px; flex-wrap: wrap">
+                  <div style="flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+                    <b style="font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: 17px">Documents</b>
+                    <sc-for list="{{ docs }}" as="d" hint-placeholder-count="4">
+                      <button type="button" onClick="{{ d.pick }}" style="{{ d.style }}"><span style="width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0; display: grid; place-items: center; color: #FFFFFF; font-size: 11px; font-weight: 700; background: {{ d.av }}">{{ d.ini }}</span><span style="flex: 1; min-width: 0; text-align: left"><b style="display: block; font-weight: 600">{{ d.client }}</b><span style="font-size: 12px; color: #54585F">{{ d.no }}</span></span><span style="text-align: right"><b style="display: block">{{ d.amt }}</b><span style="font-size: 12px; color: {{ d.stc }}">{{ d.st }}</span></span></button>
+                    </sc-for>
+                  </div>
+                  <div style="flex: 999 1 320px; min-width: 0; background: #FFFFFF; border: 1px solid #ECECE7; border-radius: 6px; padding: 26px 28px; display: flex; flex-direction: column; gap: 16px">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start"><span style="width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, #5B8CFF, #2D5BFF); color: #FFFFFF; font-weight: 700; display: grid; place-items: center">N</span><div style="text-align: right"><b style="font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: 24px">{{ docKind }}</b><div style="font-size: 12px; color: #54585F">{{ docNo }}</div></div></div>
+                    <div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap"><div><div style="font-size: 11px; color: #6B7079; letter-spacing: 0.04em">BILLED TO</div><b>{{ docClient }}</b></div><div style="text-align: right"><div style="font-size: 11px; color: #6B7079; letter-spacing: 0.04em">STATUS</div><b style="color: {{ docStc }}">{{ docSt }}</b></div></div>
+                    <div style="border-top: 1px solid #ECECE7; padding-top: 10px; display: flex; justify-content: space-between"><span>{{ docItem }}</span><b>{{ docAmt }}</b></div>
+                    <div style="margin-left: auto; width: 220px; display: flex; flex-direction: column; gap: 6px; color: #54585F"><div style="display: flex; justify-content: space-between"><span>VAT 5%</span><span>included</span></div><div style="display: flex; justify-content: space-between; border-top: 1px solid #14161A; padding-top: 6px; color: #14161A"><b style="font-family: Chillax, Inter, sans-serif; font-size: 16px">Total</b><b style="font-family: Chillax, Inter, sans-serif; font-size: 16px">{{ docAmt }}</b></div></div>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ pgCl }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; flex-direction: column; gap: 14px">
+                  <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap"><span style="width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #FF7847, #C13B7A); color: #FFFFFF; font-weight: 700; display: grid; place-items: center">AN</span><div><b style="font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: 19px">Al Noor Trading</b><div style="font-size: 12px; color: #54585F">Huda Al Mansoori · huda@alnoor.ae</div></div><button type="button" onClick="{{ payIt }}" style="margin-left: auto; height: 32px; padding: 0 12px; border: 0; border-radius: 8px; background: #3550E0; color: #FFFFFF; font: inherit; font-weight: 500; cursor: pointer">{{ payLabel }}</button></div>
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); border-top: 1px solid #ECECE7; border-bottom: 1px solid #ECECE7">
+                    <div style="padding: 12px 14px; border-right: 1px solid #ECECE7"><div style="font-size: 11px; color: #6B7079">BILLED</div><b class="pv" style="font-size: 18px">AED 83,000</b></div>
+                    <div style="padding: 12px 14px; border-right: 1px solid #ECECE7"><div style="font-size: 11px; color: #6B7079">OUTSTANDING</div><b class="pv" style="font-size: 18px; color: #C13838">{{ outstanding }}</b></div>
+                    <div style="padding: 12px 14px"><div style="font-size: 11px; color: #6B7079">PAYS IN</div><b class="pv" style="font-size: 18px">12 days</b></div>
+                  </div>
+                  <sc-for list="{{ clDocs }}" as="c" hint-placeholder-count="3">
+                    <div style="display: flex; align-items: center; gap: 12px; height: 46px; padding: 0 14px; border: 1px solid #ECECE7; border-radius: 10px; background: #FFFFFF"><span style="font-size: 12px; color: #54585F; width: 70px">{{ c.no }}</span><span style="flex: 1">{{ c.name }}</span><span class="pill" style="{{ c.pill }}">{{ c.st }}</span><b style="width: 90px; text-align: right">{{ c.amt }}</b></div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+
+          <aside class="hide-sm" style="width: 290px; flex-shrink: 0; border-radius: 14px; background: #FFFFFF; display: flex; flex-direction: column; overflow: hidden">
+            <div style="height: 46px; display: flex; align-items: center; gap: 8px; padding: 0 14px; font-weight: 600; font-size: 14px"><span class="kf"><i></i><i></i></span>Kraft<button type="button" onClick="{{ resetKraft }}" aria-label="New chat" style="margin-left: auto; border: 0; background: transparent; color: #54585F; cursor: pointer; font: inherit; font-size: 12px">New chat</button></div>
+            <div style="flex: 1; min-height: 0; overflow: auto; padding: 4px 14px 10px; display: flex; flex-direction: column; gap: 10px">
+              <sc-if value="{{ kEmpty }}" hint-placeholder-val="{{ true }}">
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; padding-top: 40px">
+                  <span class="kf" style="width: 44px; height: 44px; border-radius: 13px; gap: 6px"><i style="width: 6px; height: 15px"></i><i style="width: 6px; height: 15px"></i></span>
+                  <b style="font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: 16px; margin-top: 6px">Good morning, Nadia</b>
+                  <span style="color: #54585F">Ask anything, or hand me a task.</span>
+                  <button type="button" onClick="{{ askOverdue }}" class="sug">✦ What's overdue this week?</button>
+                  <button type="button" onClick="{{ askQuote }}" class="sug">✦ Draft a quote and chase Al Noor</button>
+                  <button type="button" onClick="{{ askProject }}" class="sug">✦ How is Website phase 2 doing?</button>
+                </div>
+              </sc-if>
+              <sc-if value="{{ kAsked }}" hint-placeholder-val="{{ false }}">
+                <div class="rise" style="align-self: flex-end; max-width: 90%; padding: 8px 12px; border-radius: 12px; background: #F1F1EE">{{ kQ }}</div>
+                <div style="font-size: 12px; color: #6B7079">› {{ kSteps }}</div>
+                <sc-if value="{{ kTyping }}" hint-placeholder-val="{{ false }}"><div style="display: flex; align-items: center; gap: 8px; color: #54585F"><span class="kf"><i></i><i></i></span>Kraft is working<span class="dot" style="width: 5px; height: 5px; border-radius: 50%; background: #3550E0"></span><span class="dot d2" style="width: 5px; height: 5px; border-radius: 50%; background: #3550E0"></span><span class="dot d3" style="width: 5px; height: 5px; border-radius: 50%; background: #3550E0"></span></div></sc-if>
+                <sc-if value="{{ kIsQuote }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 8px">
+                    <div class="rise" style="display: flex; align-items: center; gap: 8px"><span class="okc">✓</span>Drafted QUO-0021 · AED 12,000</div>
+                    <div class="rise" style="display: flex; align-items: center; gap: 8px; animation-delay: .35s"><span class="okc">✓</span>Wrote a reminder to Huda</div>
+                    <div class="rise" style="border: 1px solid #ECECE7; border-radius: 12px; padding: 10px 12px; animation-delay: .7s"><b style="display: block">Send the reminder to Huda?</b><span style="font-size: 12px; color: #54585F">Nothing goes out until you approve.</span>
+                      <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 8px"><button type="button" onClick="{{ resetKraft }}" class="pb">Not now</button><button type="button" onClick="{{ approve }}" style="{{ approveStyle }}">{{ approveLabel }}</button></div></div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ kHasAnswer }}" hint-placeholder-val="{{ false }}">
+                  <div class="rise" style="line-height: 1.6; color: #23252B; animation-delay: .2s">{{ kA }}</div>
+                </sc-if>
+              </sc-if>
+            </div>
+            <div style="margin: 0 10px 10px; border: 1.5px solid #E3E3DE; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 8px"><span style="color: #6B7079">Ask Kraft or give it a task…</span><div style="display: flex; align-items: center; gap: 8px; color: #54585F"><span>+</span><span style="height: 22px; padding: 0 7px; border: 1px solid #ECECE7; border-radius: 6px; font-size: 12px; display: inline-flex; align-items: center">Agent</span><span style="margin-left: auto; width: 24px; height: 24px; border-radius: 50%; background: #3550E0; color: #FFFFFF; display: grid; place-items: center; font-size: 13px">↑</span></div></div>
+          </aside>
+        </div>
+      </div>
+      <div style="margin: 14px 0 0; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; color: #6B7092">
+        <sc-if value="{{ demoOn }}" hint-placeholder-val="{{ true }}"><span style="height: 28px; padding: 0 12px; border-radius: 999px; background: #FFFFFF; border: 1px solid #ECEDF5; display: inline-flex; align-items: center; gap: 8px; color: #0E1330; font-weight: 500"><span class="pulse" style="width: 8px; height: 8px; border-radius: 50%; background: #1F8A52"></span>Live demo playing · click anything to take over</span></sc-if>
+        <sc-if value="{{ demoOff }}" hint-placeholder-val="{{ false }}"><span>You're driving. Click around the app, or ask Kraft something.</span><button type="button" onClick="{{ replay }}" style="height: 28px; padding: 0 12px; border-radius: 999px; border: 1px solid #E0E2EE; background: #FFFFFF; color: #3550E0; font: inherit; font-weight: 600; cursor: pointer">↺ Replay demo</button></sc-if>
+      </div>
+    </div>
+    <div style="height: 80px"></div>
+  </section>
+
+  <!-- ================= FACTS BAND ================= -->
+  <section style="max-width: 1180px; margin: 0 auto; padding: 0 24px 20px">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
+      <div style="border-radius: 22px; padding: 24px; background: #EEF0FF; display: flex; flex-direction: column; gap: 4px"><b style="font-family: Chillax, Inter, sans-serif; font-size: 44px; font-weight: 600; letter-spacing: -0.03em; color: #3550E0">6 tools</b><span style="font-size: 15px; color: #3B4166">replaced: invoicing, CRM, quotes, time, expenses, reminders</span></div>
+      <div style="border-radius: 22px; padding: 24px; background: #FFF1EB; display: flex; flex-direction: column; gap: 4px"><b style="font-family: Chillax, Inter, sans-serif; font-size: 44px; font-weight: 600; letter-spacing: -0.03em; color: #D9512F">3 min</b><span style="font-size: 15px; color: #5A4038">to set up your business and send a first invoice</span></div>
+      <div style="border-radius: 22px; padding: 24px; background: #E4F8EF; display: flex; flex-direction: column; gap: 4px"><b style="font-family: Chillax, Inter, sans-serif; font-size: 44px; font-weight: 600; letter-spacing: -0.03em; color: #13865D">0 emails</b><span style="font-size: 15px; color: #2E4E42">sent without your approval. Kraft asks first, every time.</span></div>
+    </div>
+  </section>
+
+  <!-- ================= DEMO VIDEO SLOT ================= -->
+  <section id="demo" style="max-width: 1180px; margin: 0 auto; padding: 72px 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center">
+    <h2 style="margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(2rem, 4.5vw, 3.25rem); line-height: 1.0; letter-spacing: -0.035em">Watch CraftlyAI in 60 seconds</h2>
+    <p style="margin: 0; font-size: 17px; color: #3B4166; max-width: 34em">From a client's approved quote to the money in your account. One minute inside the real app, with Kraft doing the busywork.</p>
+    <div style="position: relative; width: 100%; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 28px; overflow: hidden; background: #E9ECF8; box-shadow: 0 50px 100px -40px rgba(53,80,224,0.6), 0 0 0 1px rgba(53,80,224,0.08)">
+      <video src="/_blob/1656002b0d85c4322978091222ba37ce" poster="/_blob/3d0ae6b93c0f5ce92e56a89e459c63b5" controls="controls" playsinline="playsinline" preload="metadata" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: contain; background: #F6F7FB" aria-label="CraftlyAI product film, 63 seconds, with voiceover"></video>
+    </div>
+  </section>
+
+  <!-- ================= MARQUEE ================= -->
+  <section style="overflow: hidden; padding: 36px 0" aria-label="Things CraftlyAI does every day">
+    <div class="marquee" style="display: flex; gap: 12px; width: max-content">
+      <sc-for list="{{feed}}" as="e" hint-placeholder-count="16">
+        <span style="{{e.style}}"><span style="{{e.dot}}"></span>{{e.text}}</span>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ================= FEATURE TOUR ================= -->
+  <section class="sec" id="tour" style="max-width: 1280px; margin: 0 auto; padding: 60px 24px 100px; display: flex; flex-direction: column; gap: 36px">
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px">
+      <h2 style="margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(2.25rem, 5vw, 4rem); line-height: 0.98; letter-spacing: -0.04em; text-wrap: balance; max-width: 14em">Every part of the job, in one place.</h2>
+      <p style="margin: 0; font-size: 18px; color: #3B4166; max-width: 36em">Pick a step to see it. From the first quote to the last payment, nothing leaves the app.</p>
+    </div>
+    <div class="tour-tabs" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; padding: 6px; border-radius: 20px; background: #F4F5FA">
+      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+        <button type="button" onClick="{{t.pick}}" aria-pressed="{{t.on}}" style="{{t.style}}">
+          <span style="{{t.iconStyle}}">{{t.short}}</span>
+          <span style="display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0"><b style="font-size: 15px; font-weight: 600">{{t.label}}</b><span style="font-size: 12px; opacity: 0.75">{{t.sub}}</span></span>
+          <sc-if value="{{t.on}}" hint-placeholder-val="{{ false }}"><span class="prog" style="{{t.progStyle}}"></span></sc-if>
+        </button>
+      </sc-for>
+    </div>
+
+    <div class="tour-stage" style="{{stageStyle}}">
+      <sc-if value="{{tab0}}" hint-placeholder-val="{{ true }}">
+        <div class="rise" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
+          <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+            <h3 style="margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(1.9rem, 3.5vw, 2.75rem); line-height: 1.04; letter-spacing: -0.03em">Quotes your clients approve from their phone.</h3>
+            <p style="margin: 0; font-size: 18px; color: #5A4038">Send a quote or proposal as a link. One tap to approve, no account. Approved quotes turn into invoices, or purchase orders, in one click.</p>
+          </div>
+          <div class="tour-mock" style="flex: 1 1 420px; min-width: 0; display: flex; justify-content: center; position: relative; min-height: 440px">
+            <div class="floaty" style="width: 270px; border-radius: 40px; background: #0E1330; padding: 10px; box-sizing: border-box; box-shadow: 0 40px 70px -30px rgba(217,81,47,0.6)">
+              <div style="border-radius: 31px; background: #FFFFFF; padding: 24px 18px; display: flex; flex-direction: column; gap: 12px; position: relative">
+                <span style="font-size: 12px; color: #6B7092">Studio Nadia sent you a quote</span>
+                <b style="font-size: 17px; font-weight: 600">Website phase 2</b>
+                <span style="font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: 34px; letter-spacing: -0.02em">AED 8,000</span>
+                <div style="display: flex; flex-direction: column; gap: 6px; background: #FFF1EB; border-radius: 14px; padding: 12px; font-size: 12px; color: #5A4038"><span>Design and build, 6 pages</span><span>Two rounds of changes</span><span>Valid until 30 Nov</span></div>
+                <span class="ring" style="height: 46px; border-radius: 14px; background: #FF7A59; color: #FFFFFF; font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center">Approve quote</span>
+                <span class="tick" style="position: absolute; right: -18px; top: 60px; width: 48px; height: 48px; border-radius: 50%; background: #13865D; display: grid; place-items: center; box-shadow: 0 12px 24px -8px rgba(19,134,93,0.6)" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{tab1}}" hint-placeholder-val="{{ false }}">
+        <div class="rise" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
+          <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+            <h3 style="margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(1.9rem, 3.5vw, 2.75rem); line-height: 1.04; letter-spacing: -0.03em">Invoices with your brand and your VAT.</h3>
+            <p style="margin: 0; font-size: 18px; color: #3B4166">Your logo, TRN and VAT on every PDF, a pay link for the client, and retainers that invoice themselves every month.</p>
+          </div>
+          <div style="flex: 1 1 420px; min-width: 0">
+            <div class="floaty2" style="background: #FFFFFF; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 40px 80px -36px rgba(53,80,224,0.55)">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap"><div style="display: flex; flex-direction: column"><b style="font-family: Chillax, Inter, sans-serif; font-size: 24px; font-weight: 600">Studio Nadia</b><span style="font-size: 12px; color: #6B7092">TRN 100234567800003</span></div><div style="display: flex; flex-direction: column; align-items: flex-end"><b style="font-size: 15px; font-weight: 600">INV-0043</b><span style="height: 24px; padding: 0 10px; border-radius: 999px; background: #E3E8FF; color: #3550E0; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; margin-top: 4px">Sent</span></div></div>
+              <div style="display: flex; justify-content: space-between; font-size: 16px; padding-top: 10px; border-top: 1px solid #EEF0F5"><span>Website phase 2</span><span>AED 7,619.05</span></div>
+              <div style="display: flex; justify-content: space-between; font-size: 16px; color: #4A4F6E"><span>VAT 5%</span><span>AED 380.95</span></div>
+              <div style="display: flex; justify-content: space-between; font-size: 24px; font-weight: 700; border-top: 1px solid #EEF0F5; padding-top: 12px"><span>Total</span><span>AED 8,000.00</span></div>
+              <span class="ringb" style="align-self: flex-start; height: 44px; padding: 0 18px; border-radius: 12px; background: #3550E0; color: #FFFFFF; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center">Pay AED 8,000</span>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{tab2}}" hint-placeholder-val="{{ false }}">
+        <div class="rise" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
+          <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+            <h3 style="margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(1.9rem, 3.5vw, 2.75rem); line-height: 1.04; letter-spacing: -0.03em">One transfer, three invoices, sorted in seconds.</h3>
+            <p style="margin: 0; font-size: 18px; color: #2E4E42">Record payments on the day the money arrived. Split one transfer across invoices, and the client gets one receipt email for all of them.</p>
+          </div>
+          <div style="flex: 1 1 420px; min-width: 0">
+            <div class="floaty" style="background: #FFFFFF; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 40px 80px -36px rgba(19,134,93,0.55)">
+              <div style="display: flex; justify-content: space-between; align-items: center"><b style="font-family: Chillax, Inter, sans-serif; font-size: 24px; font-weight: 600">AED 15,000 received</b><span style="font-size: 13px; color: #6B7092">11 Nov</span></div>
+              <div style="display: flex; height: 18px; border-radius: 999px; overflow: hidden; gap: 3px; background: #EEF1F5" aria-hidden="true"><span class="f1" style="width: 33%; background: #13865D"></span><span class="f2" style="width: 40%; background: #2BD4A0"></span><span class="f3" style="width: 27%; background: #FFC857"></span></div>
+              <div style="display: flex; flex-direction: column; font-size: 15px">
+                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #EEF1F5"><span>INV-0041 · Brand identity</span><b style="color: #13865D; font-weight: 600">5,000 · paid</b></div>
+                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #EEF1F5"><span>INV-0042 · Social media kit</span><b style="color: #13865D; font-weight: 600">6,000 · paid</b></div>
+                <div style="display: flex; justify-content: space-between; padding: 10px 0"><span>INV-0043 · Website phase 2</span><b style="color: #B07A00; font-weight: 600">4,000 · 4,000 left</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{tab3}}" hint-placeholder-val="{{ false }}">
+        <div class="rise" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
+          <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+            <h3 style="margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(1.9rem, 3.5vw, 2.75rem); line-height: 1.04; letter-spacing: -0.03em">Projects that show money and progress together.</h3>
+            <p style="margin: 0; font-size: 18px; color: #5A4A1E">Tasks, milestones your client can see, tracked time and real profit per project, so you know what's on pace and what each job made you.</p>
+          </div>
+          <div style="flex: 1 1 420px; min-width: 0">
+            <div class="floaty2" style="background: #FFFFFF; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 40px 80px -36px rgba(176,122,0,0.5)">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap"><b style="font-family: Chillax, Inter, sans-serif; font-size: 22px; font-weight: 600">Al Noor rebrand</b><span style="height: 28px; padding: 0 12px; border-radius: 999px; background: #FFF6DD; color: #8A5E00; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center">73% margin · AED 17,600</span></div>
+              <div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+                <div style="display: flex; align-items: center; gap: 10px"><span class="check" style="width: 20px; height: 20px; border-radius: 6px; border: 2px solid #D9DBE8; box-sizing: border-box"></span>Logo concepts <span style="margin-left: auto; font-size: 12px; color: #6B7092">milestone · client sees it</span></div>
+                <div style="display: flex; align-items: center; gap: 10px"><span class="check d2" style="width: 20px; height: 20px; border-radius: 6px; border: 2px solid #D9DBE8; box-sizing: border-box"></span>Brand guidelines <span style="margin-left: auto; font-size: 12px; color: #6B7092">6h 20m tracked</span></div>
+                <div style="display: flex; align-items: center; gap: 10px"><span class="check d3" style="width: 20px; height: 20px; border-radius: 6px; border: 2px solid #D9DBE8; box-sizing: border-box"></span>Social templates <span style="margin-left: auto; font-size: 12px; color: #6B7092">due 28 Nov</span></div>
+              </div>
+              <div style="display: flex; align-items: flex-end; gap: 14px; height: 110px" aria-hidden="true">
+                <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end"><span class="bar" style="width: 100%; height: 100%; border-radius: 10px; background: #3550E0"></span><span style="font-size: 12px; color: #6B7092">Sold</span></div>
+                <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end"><span class="bar d2" style="width: 100%; height: 27%; border-radius: 10px; background: #FF7A59"></span><span style="font-size: 12px; color: #6B7092">Cost</span></div>
+                <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end"><span class="bar d3" style="width: 100%; height: 73%; border-radius: 10px; background: #13865D"></span><span style="font-size: 12px; color: #6B7092">Profit</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{tab4}}" hint-placeholder-val="{{ false }}">
+        <div class="rise" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
+          <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+            <h3 style="margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(1.9rem, 3.5vw, 2.75rem); line-height: 1.04; letter-spacing: -0.03em">Tell Kraft what happened. It does the rest.</h3>
+            <p style="margin: 0; font-size: 18px; color: #3B2E66">Plain words in, finished paperwork out. Kraft checks your invoices, drafts what's needed, and waits for your yes.</p>
+          </div>
+          <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+            <div style="align-self: flex-end; max-width: 360px; background: #0E1330; color: #FFFFFF; border-radius: 18px 18px 4px 18px; padding: 13px 16px; font-size: 15px">Al Noor paid 15,000 for the three open invoices last Tuesday.</div>
+            <div style="background: #FFFFFF; border-radius: 18px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 1px 2px rgba(14,19,48,0.08)">
+              <span style="display: inline-flex; gap: 5px; align-items: center; font-size: 12px; color: #6B7092"><span class="dot" style="width: 6px; height: 6px; border-radius: 50%; background: #8B5CF6"></span><span class="dot d2" style="width: 6px; height: 6px; border-radius: 50%; background: #8B5CF6"></span><span class="dot d3" style="width: 6px; height: 6px; border-radius: 50%; background: #8B5CF6"></span>Kraft is checking 3 invoices</span>
+              <p class="reveal" style="margin: 0; font-size: 15px">That pays INV-0041 and INV-0042 in full and AED 4,000 of INV-0043. I'll send one receipt.</p>
+            </div>
+            <div class="reveal" style="background: linear-gradient(140deg, #4B2BB8, #8B5CF6); color: #FFFFFF; border-radius: 18px; padding: 16px 18px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; box-shadow: 0 24px 50px -20px rgba(75,43,184,0.7)">
+              <div style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column"><b style="font-size: 15px; font-weight: 600">Record AED 15,000 across 3 invoices?</b><span style="font-size: 13px; color: rgba(255,255,255,0.8)">Received 11 Nov · bank transfer</span></div>
+              <span style="height: 44px; padding: 0 18px; border-radius: 10px; background: #FFFFFF; color: #4B2BB8; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center">Approve</span>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- ================= BENTO ================= -->
+  <section class="sec" style="max-width: 1280px; margin: 0 auto; padding: 0 24px 110px; display: flex; flex-direction: column; gap: 16px">
+    <h2 style="margin: 0 0 12px; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.0; letter-spacing: -0.04em; max-width: 16em; text-wrap: balance">Small things that save you hours every week.</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px">
+      <div class="bento-tile" style="flex: 2 1 560px; min-width: 0; border-radius: 28px; padding: 30px; background: linear-gradient(150deg, #1B2A8C, #3550E0 60%, #5B6CF0); color: #FFFFFF; position: relative; overflow: hidden; min-height: 300px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+        <div class="b2" style="position: absolute; width: 360px; height: 360px; right: -100px; bottom: -160px; border-radius: 50%; background: radial-gradient(circle, rgba(43,212,160,0.5), rgba(43,212,160,0) 65%)" aria-hidden="true"></div>
+        <b style="position: relative; font-family: Chillax, Inter, sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.02em">A client portal with no login</b>
+        <span style="position: relative; font-size: 16px; color: rgba(255,255,255,0.82); max-width: 26em">Clients open quotes, invoices and receipts from one link, see your milestones, and pay.</span>
+        <div style="position: relative; display: flex; gap: 10px; margin-top: auto; flex-wrap: wrap">
+          <span style="height: 40px; padding: 0 14px; border-radius: 12px; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.25); font-size: 14px; display: inline-flex; align-items: center">QUO-0019 · approved</span>
+          <span style="height: 40px; padding: 0 14px; border-radius: 12px; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.25); font-size: 14px; display: inline-flex; align-items: center">INV-0043 · pay now</span>
+          <span style="height: 40px; padding: 0 14px; border-radius: 12px; background: #FFFFFF; color: #1B2A8C; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center">Milestone: logo done ✓</span>
+        </div>
+      </div>
+      <div class="bento-tile" style="flex: 1 1 300px; min-width: 0; border-radius: 28px; padding: 30px; background: #FFF1EB; min-height: 300px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+        <b style="font-family: Chillax, Inter, sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Reminders that sound like you</b>
+        <span style="font-size: 15px; color: #5A4038">Polite first, firmer later. Drafted for you, never sent on their own.</span>
+        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+          <span style="background: #FFFFFF; border-radius: 12px; padding: 10px 12px; font-size: 13px">Day 3 · "A quick nudge on INV-0043…"</span>
+          <span style="background: #FFFFFF; border-radius: 12px; padding: 10px 12px; font-size: 13px; opacity: 0.75">Day 10 · "Following up on…"</span>
+          <span style="background: #FFFFFF; border-radius: 12px; padding: 10px 12px; font-size: 13px; opacity: 0.5">Day 21 · "Final reminder…"</span>
+        </div>
+      </div>
+      <div class="bento-tile" style="flex: 1 1 300px; min-width: 0; border-radius: 28px; padding: 30px; background: #E4F8EF; min-height: 280px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+        <b style="font-family: Chillax, Inter, sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Client health at a glance</b>
+        <span style="font-size: 15px; color: #2E4E42">See who's paying slowly or going quiet before it costs you.</span>
+        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px; font-size: 14px">
+          <div style="display: flex; justify-content: space-between; background: #FFFFFF; border-radius: 12px; padding: 10px 12px"><span>Al Noor Trading</span><b style="color: #13865D">Healthy · 86</b></div>
+          <div style="display: flex; justify-content: space-between; background: #FFFFFF; border-radius: 12px; padding: 10px 12px"><span>Bloom Studio</span><b class="pulse" style="color: #D9512F">Needs you · 48</b></div>
+        </div>
+      </div>
+      <div class="bento-tile" style="flex: 1 1 300px; min-width: 0; border-radius: 28px; padding: 30px; background: #FFF6DD; min-height: 280px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+        <b style="font-family: Chillax, Inter, sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Bills you owe, sorted</b>
+        <span style="font-size: 15px; color: #5A4A1E">Supplier bills with due dates, a To pay list, and your cost per job.</span>
+        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px; font-size: 14px">
+          <div style="display: flex; justify-content: space-between; background: #FFFFFF; border-radius: 12px; padding: 10px 12px"><span>Acme Print</span><b style="color: #8A5E00">AED 1,500 · Fri</b></div>
+          <div style="display: flex; justify-content: space-between; background: #FFFFFF; border-radius: 12px; padding: 10px 12px"><span>Pixel Studio</span><b>AED 2,400 · 2 Dec</b></div>
+        </div>
+      </div>
+      <div class="bento-tile" style="flex: 1 1 300px; min-width: 0; border-radius: 28px; padding: 30px; background: #F3F0FF; min-height: 280px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden">
+        <b style="font-family: Chillax, Inter, sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">VAT, TRN and ZATCA built in</b>
+        <span style="font-size: 15px; color: #3B2E66">UAE, Saudi, UK and India tax rules, in any currency.</span>
+        <div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px">
+          <span style="height: 34px; padding: 0 12px; border-radius: 999px; background: #13865D; color: #FFFFFF; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center">UAE VAT 5%</span>
+          <span style="height: 34px; padding: 0 12px; border-radius: 999px; background: #3550E0; color: #FFFFFF; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center">KSA ZATCA</span>
+          <span style="height: 34px; padding: 0 12px; border-radius: 999px; background: #8B5CF6; color: #FFFFFF; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center">UK VAT</span>
+          <span style="height: 34px; padding: 0 12px; border-radius: 999px; background: #FF7A59; color: #FFFFFF; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center">India GST</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= KRAFT + CLAUDE ================= -->
+  <section class="sec" id="kraft" style="padding: 0 24px 110px">
+    <div style="position: relative; overflow: hidden; max-width: 1280px; margin: 0 auto; border-radius: 40px; background: linear-gradient(150deg, #160F3D 0%, #3E23A8 50%, #8B5CF6 100%); color: #FFFFFF; padding: clamp(32px, 6vw, 88px); display: flex; flex-wrap: wrap; gap: 56px; align-items: center; box-sizing: border-box">
+      <div class="spin" style="position: absolute; width: 900px; height: 900px; right: -300px; top: -300px; border-radius: 50%; background: conic-gradient(from 0deg, rgba(255,122,89,0.25), rgba(43,212,160,0.2), rgba(53,80,224,0.25), rgba(255,122,89,0.25)); filter: blur(60px)" aria-hidden="true"></div>
+      <div style="position: relative; flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+        <span class="floaty" style="width: 80px; height: 80px; border-radius: 26px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 12px; box-shadow: 0 24px 50px -16px rgba(14,19,48,0.7)" aria-hidden="true"><span style="width: 10px; height: 24px; border-radius: 6px; background: #3E23A8"></span><span style="width: 10px; height: 24px; border-radius: 6px; background: #3E23A8"></span></span>
+        <h2 style="margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 0.98; letter-spacing: -0.04em; text-wrap: balance">Kraft does the paperwork. You say yes.</h2>
+        <p style="margin: 0; font-size: 18px; color: rgba(255,255,255,0.84)">Use Kraft inside the app, or connect CraftlyAI to Claude and ask from there. Either way, sends, payments and deletes wait in Approvals for you.</p>
+        <p style="margin: 0; display: inline-flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 600"><span style="width: 26px; height: 26px; border-radius: 50%; background: #2BD4A0; display: grid; place-items: center" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0E1330" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Nothing is sent, charged or deleted until you approve it.</p>
+      </div>
+      <div style="position: relative; flex: 1 1 460px; min-width: 0">
+        <div style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); backdrop-filter: blur(16px); border-radius: 24px; overflow: hidden">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.16); gap: 8px; flex-wrap: wrap"><div style="display: flex; flex-direction: column"><b style="font-size: 15px; font-weight: 600">Approvals · from Claude</b><span style="font-size: 12px; color: rgba(255,255,255,0.7)">Batch of 3 · runs in this order</span></div><span class="ring" style="height: 38px; padding: 0 14px; border-radius: 11px; background: #2BD4A0; color: #0E1330; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center">Approve all 3</span></div>
+          <div style="display: flex; flex-direction: column; font-size: 15px">
+            <div style="display: flex; align-items: center; gap: 12px; padding: 13px 18px; border-bottom: 1px solid rgba(255,255,255,0.12)"><span style="width: 28px; height: 28px; border-radius: 9px; background: #3550E0; display: grid; place-items: center; font-size: 12px; font-weight: 700">1</span>Mark INV-0044 as sent</div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 13px 18px; border-bottom: 1px solid rgba(255,255,255,0.12)"><span style="width: 28px; height: 28px; border-radius: 9px; background: #13865D; display: grid; place-items: center; font-size: 12px; font-weight: 700">2</span>Record AED 5,000 payment on INV-0044</div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 13px 18px"><span style="width: 28px; height: 28px; border-radius: 9px; background: #FF7A59; display: grid; place-items: center; font-size: 12px; font-weight: 700">3</span>Email a thank-you, after the payment</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRICING ================= -->
+  <section class="sec" id="pricing" style="max-width: 1280px; margin: 0 auto; padding: 0 24px 110px; display: flex; flex-direction: column; gap: 40px">
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px">
+      <h2 style="margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(2.25rem, 5vw, 4rem); line-height: 0.98; letter-spacing: -0.04em">Simple plans. Grow when you're ready.</h2>
+      <p style="margin: 0; font-size: 17px; color: #3B4166">Prices in AED. Cancel any time.</p>
+      <div style="display: inline-flex; background: #F4F5FA; border-radius: 14px; padding: 5px" role="group" aria-label="Billing period">
+        <button type="button" onClick="{{showMonthly}}" aria-pressed="{{monthlyOn}}" style="{{monthlyStyle}}">Monthly</button>
+        <button type="button" onClick="{{showAnnual}}" aria-pressed="{{annualOn}}" style="{{annualStyle}}">Yearly · save about 20%</button>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; align-items: stretch">
+      <sc-for list="{{plans}}" as="p" hint-placeholder-count="4">
+        <div class="{{p.cls}}" style="{{p.cardStyle}}">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px"><b style="font-size: 18px; font-weight: 600">{{p.name}}</b><sc-if value="{{p.pick}}" hint-placeholder-val="{{ false }}"><span style="height: 26px; padding: 0 10px; border-radius: 999px; background: #FFC857; color: #0E1330; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center">Recommended</span></sc-if></div>
+          <div style="display: flex; align-items: baseline; gap: 6px"><span style="font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: 46px; letter-spacing: -0.03em">{{p.price}}</span><span style="{{p.perStyle}}">{{p.per}}</span></div>
+          <span style="{{p.saveStyle}}">{{p.saving}}</span>
+          <span style="{{p.blurbStyle}}">{{p.blurb}}</span>
+          <div style="{{p.listStyle}}"><sc-for list="{{p.features}}" as="f" hint-placeholder-count="4"><span>✓ {{f}}</span></sc-for></div>
+          <a href="#book-demo" style="{{p.ctaStyle}}">{{p.cta}}</a>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section id="faq" class="faq" style="background: #F7F7FB">
+    <div style="max-width: 880px; margin: 0 auto; padding: 100px 24px; display: flex; flex-direction: column; gap: 28px">
+      <h2 style="margin: 0; text-align: center; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(2rem, 4.5vw, 3.25rem); line-height: 1.0; letter-spacing: -0.035em">Questions people ask</h2>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <details style="background: #FFFFFF; border-radius: 20px; padding: 22px 24px; box-shadow: 0 1px 2px rgba(14,19,48,0.06)" open=""><summary style="font-size: 18px; font-weight: 600">What is CraftlyAI?</summary><p style="margin: 10px 0 0; font-size: 16px; color: #4A4F6E">One app to run your business: clients, projects, quotes, invoices, payments, expenses and follow-ups, with an assistant called Kraft that does the busywork.</p></details>
+        <details style="background: #FFFFFF; border-radius: 20px; padding: 22px 24px; box-shadow: 0 1px 2px rgba(14,19,48,0.06)"><summary style="font-size: 18px; font-weight: 600">Is it really free?</summary><p style="margin: 10px 0 0; font-size: 16px; color: #4A4F6E">Yes. The Free plan covers 3 clients and 5 documents a month, with no card. Starter is AED 69 a month when you need more.</p></details>
+        <details style="background: #FFFFFF; border-radius: 20px; padding: 22px 24px; box-shadow: 0 1px 2px rgba(14,19,48,0.06)"><summary style="font-size: 18px; font-weight: 600">Will Kraft send things without me?</summary><p style="margin: 10px 0 0; font-size: 16px; color: #4A4F6E">No. Kraft drafts quotes, invoices and emails and can record payments, but anything that sends, charges or deletes waits for your approval first.</p></details>
+        <details style="background: #FFFFFF; border-radius: 20px; padding: 22px 24px; box-shadow: 0 1px 2px rgba(14,19,48,0.06)"><summary style="font-size: 18px; font-weight: 600">Can I use it from Claude?</summary><p style="margin: 10px 0 0; font-size: 16px; color: #4A4F6E">Yes, on every plan. Connect CraftlyAI to Claude and ask it to look things up or prepare work. Sends, payments and deletes land in Approvals, one by one or as a batch.</p></details>
+        <details style="background: #FFFFFF; border-radius: 20px; padding: 22px 24px; box-shadow: 0 1px 2px rgba(14,19,48,0.06)"><summary style="font-size: 18px; font-weight: 600">Does it handle UAE VAT?</summary><p style="margin: 10px 0 0; font-size: 16px; color: #4A4F6E">Yes. Add your TRN once and every invoice shows VAT correctly. It also supports Saudi ZATCA QR codes, UK VAT numbers and Indian GST.</p></details>
+        <details style="background: #FFFFFF; border-radius: 20px; padding: 22px 24px; box-shadow: 0 1px 2px rgba(14,19,48,0.06)"><summary style="font-size: 18px; font-weight: 600">Can it replace FreshBooks, HoneyBook or my spreadsheet?</summary><p style="margin: 10px 0 0; font-size: 16px; color: #4A4F6E">For most businesses, yes: invoicing, clients, quotes and proposals, time tracking, a client portal and expenses in one place. Bring past invoices over with Claude in one go.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FINAL CTA ================= -->
+  <section id="book-demo" class="sec" style="padding: 100px 24px; scroll-margin-top: 24px">
+    <div style="position: relative; overflow: hidden; max-width: 1280px; margin: 0 auto; border-radius: 40px; background: linear-gradient(120deg, #FF7A59 0%, #3550E0 50%, #8B5CF6 100%); color: #FFFFFF; padding: clamp(48px, 8vw, 110px) clamp(24px, 6vw, 80px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; box-sizing: border-box">
+      <div class="b3" style="position: absolute; width: 520px; height: 520px; left: 10%; top: -260px; border-radius: 50%; background: radial-gradient(circle, rgba(255,200,87,0.6), rgba(255,200,87,0) 65%)" aria-hidden="true"></div>
+      <div class="b1" style="position: absolute; width: 520px; height: 520px; right: 5%; bottom: -300px; border-radius: 50%; background: radial-gradient(circle, rgba(43,212,160,0.5), rgba(43,212,160,0) 65%)" aria-hidden="true"></div>
+      <h2 style="position: relative; margin: 0; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: clamp(2.75rem, 7vw, 5.5rem); line-height: 0.95; letter-spacing: -0.045em; max-width: 12em; text-wrap: balance">See CraftlyAI on your own work.</h2>
+      <p style="position: relative; margin: 0; font-size: 19px; color: rgba(255,255,255,0.9); max-width: 34em">Book a 20-minute walkthrough. We set it up around your clients, quotes and invoices, and reply within a day.</p>
+      <book-demo-form></book-demo-form>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="ft-wrap">
+    <div class="ft">
+      <div class="ft-glow g1" aria-hidden="true"></div>
+      <div class="ft-glow g2" aria-hidden="true"></div>
+      <div class="ft-top">
+        <div class="ft-brand">
+          <a href="#top" class="ft-logo" aria-label="CraftlyAI, back to top"><img src="/assets/logo-mark.svg" alt="" style="height: 32px; width: auto; display: block"><img src="/assets/logo-wordmark-white.svg" alt="CraftlyAi" style="height: 22px; width: auto; display: block"></a>
+          <p class="ft-tag">Quotes, projects, invoices and payments in one place, with Kraft doing the busywork.</p>
+          <a href="#book-demo" class="ft-cta">Book a demo</a>
+          <span class="ft-small">20 minutes · We reply within a day</span>
+        </div>
+        <nav class="ft-col" aria-label="Product"><b>Product</b><a href="#tour">Tour</a><a href="#demo">Watch the film</a><a href="#kraft">Kraft</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+        <nav class="ft-col" aria-label="Get started"><b>Get started</b><a href="#book-demo">Book a demo</a><a href="#pricing">Compare plans</a></nav>
+        <nav class="ft-col" aria-label="Legal"><b>Legal</b><a href="https://app.craftlyai.app/privacy">Privacy</a><a href="https://app.craftlyai.app/terms">Terms</a></nav>
+      </div>
+      <div class="ft-bottom">
+        <span>© 2026 CraftlyAI. All rights reserved.</span>
+        <a href="#top" class="ft-top-link">Back to top <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
+      </div>
+      <div class="ft-word" aria-hidden="true">CraftlyAI</div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"autoplay":{"editor":"boolean","default":true},"$preview":{"width":1440,"height":8600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 0, annual: false, pg: 'dash', done: false, paid: false, doc: 0, k: 0, approved: false, navOpen: false, kTyping: false, toast: 0, demo: true };
+  }
+  componentDidMount() {
+    const reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.kick();
+    if ((this.props.autoplay ?? true) && !reduce) {
+      this.timer = setInterval(() => this.setState({ tab: (this.state.tab + 1) % 5 }), 5000);
+    }
+  }
+  componentWillUnmount() { clearInterval(this.timer); clearInterval(this.demoT); }
+  startDemo() {
+    clearInterval(this.demoT);
+    const S = [
+      { pg: 'dash', k: 0, kTyping: false, paid: false, done: false, approved: false, doc: 0, toast: 0 },
+      { k: 1, kTyping: true },
+      { kTyping: false },
+      { k: 2, kTyping: true, approved: false },
+      { kTyping: false },
+      { approved: true, toast: 1 },
+      { pg: 'proj', toast: 0 },
+      { done: true, toast: 2 },
+      { k: 3, kTyping: true, toast: 0 },
+      { kTyping: false },
+      { pg: 'cl' },
+      { paid: true, toast: 3 },
+      { pg: 'docs', doc: 0, toast: 0 },
+      { pg: 'dash', k: 1, kTyping: true },
+      { kTyping: false },
+      {},
+    ];
+    let i = 0;
+    this.setState({ demo: true, ...S[0] });
+    this.demoT = setInterval(() => { i = (i + 1) % S.length; this.setState(S[i]); }, 2300);
+  }
+  kick() {
+    if (this.kicked || typeof window === 'undefined') return;
+    this.kicked = true;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(() => { if (reduce) this.setState({ demo: false }); else this.startDemo(); }, 600);
+  }
+  stopDemo() { if (this.state.demo) { clearInterval(this.demoT); this.setState({ demo: false }); } }
+  renderVals() {
+    this.kick();
+    const tab = this.state.tab;
+    const annual = this.state.annual;
+    const T = [
+      { label: 'Quotes', sub: 'Clients approve', short: 'Q', c: '#FF7A59', soft: '#FFF1EB' },
+      { label: 'Invoices', sub: 'VAT and branding', short: 'I', c: '#3550E0', soft: '#EEF0FF' },
+      { label: 'Payments', sub: 'Split and receipt', short: 'P', c: '#13865D', soft: '#E4F8EF' },
+      { label: 'Projects', sub: 'Progress and profit', short: 'J', c: '#E0A100', soft: '#FFF6DD' },
+      { label: 'Kraft', sub: 'Your assistant', short: 'K', c: '#8B5CF6', soft: '#F3F0FF' },
+    ];
+    const tabs = T.map((t, i) => {
+      const on = i === tab;
+      return {
+        label: t.label, sub: t.sub, short: t.short, on,
+        pick: () => { clearInterval(this.timer); this.setState({ tab: i }); },
+        style: 'position: relative; overflow: hidden; display: flex; align-items: center; gap: 12px; text-align: left; border: 0; border-radius: 14px; padding: 12px 14px; cursor: pointer; font: inherit; color: #0E1330; background: ' + (on ? '#FFFFFF' : 'transparent') + '; box-shadow: ' + (on ? '0 10px 24px -14px rgba(14,19,48,0.35)' : 'none'),
+        iconStyle: 'width: 36px; height: 36px; flex-shrink: 0; border-radius: 11px; display: grid; place-items: center; font-family: Chillax, Inter, sans-serif; font-weight: 600; font-size: 16px; color: ' + (on ? '#FFFFFF' : t.c) + '; background: ' + (on ? t.c : t.soft),
+        progStyle: 'position: absolute; left: 0; bottom: 0; height: 3px; background: ' + t.c,
+      };
+    });
+    const stageStyle = 'border-radius: 32px; padding: clamp(24px, 5vw, 64px); min-height: 520px; box-sizing: border-box; transition: background .4s; background: ' + T[tab].soft;
+    const events = [
+      ['#FF7A59', 'Huda approved QUO-0019'], ['#3550E0', 'INV-0043 sent to Al Noor Trading'], ['#13865D', 'AED 15,000 split across 3 invoices'],
+      ['#8B5CF6', 'Kraft drafted a friendly reminder'], ['#E0A100', 'Acme Print bill due Friday'], ['#2BD4A0', 'Receipt RCT-0014 emailed'],
+      ['#FF7A59', 'Proposal opened by Bloom Studio'], ['#3550E0', 'December retainer invoice created'],
+    ];
+    const softs = { '#FF7A59': '#FFF1EB', '#3550E0': '#EEF0FF', '#13865D': '#E4F8EF', '#8B5CF6': '#F3F0FF', '#E0A100': '#FFF6DD', '#2BD4A0': '#E4F8EF' };
+    const feed = [...events, ...events].map(([c, text]) => ({
+      text,
+      style: 'height: 44px; padding: 0 18px 0 10px; border-radius: 999px; background: ' + softs[c] + '; display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500; white-space: nowrap; color: #0E1330',
+      dot: 'width: 12px; height: 12px; border-radius: 50%; background: ' + c,
+    }));
+    const seg = (on) => 'height: 42px; padding: 0 16px; border: 0; border-radius: 10px; font: inherit; font-size: 14px; cursor: pointer; background: ' + (on ? '#FFFFFF' : 'transparent') + '; color: #0E1330; font-weight: ' + (on ? '700' : '500') + '; box-shadow: ' + (on ? '0 4px 10px -6px rgba(14,19,48,0.3)' : 'none');
+    const defs = [
+      { name: 'Free', m: 0, y: 0, blurb: 'To try it on real work.', features: ['3 clients', '5 documents a month', 'Client portal', 'Kraft: 20 questions a month'], cta: 'Book a demo' },
+      { name: 'Starter', m: 69, y: 55, pick: true, blurb: 'For a busy, growing business.', features: ['15 clients', 'Unlimited documents', 'Kraft can draft and record', '100 Kraft actions a month'], cta: 'Book a demo' },
+      { name: 'Pro', m: 179, y: 143, blurb: 'No limits, every tool.', features: ['Unlimited clients', 'All tools', 'Your own portal domain', 'API access'], cta: 'Book a demo' },
+      { name: 'Agency', m: 369, y: 295, blurb: 'For teams and agencies.', features: ['Everything in Pro', '5 team members', 'Shared workspace', 'White-label portal'], cta: 'Book a demo' },
+    ];
+    const plans = defs.map((d) => {
+      const price = annual ? d.y : d.m;
+      const save = (d.m - d.y) * 12;
+      const pick = Boolean(d.pick);
+      const soft = pick ? 'rgba(255,255,255,0.8)' : '#6B7092';
+      return {
+        name: d.name, pick,
+        cls: pick ? 'plan-pick' : 'plan',
+        price: 'AED ' + price,
+        per: price ? 'a month' : 'forever',
+        perStyle: 'font-size: 14px; color: ' + soft,
+        saving: annual && save > 0 ? 'Billed yearly · save AED ' + save + ' a year' : '',
+        saveStyle: 'font-size: 13px; min-height: 20px; font-weight: 600; color: ' + (pick ? '#FFC857' : '#13865D'),
+        blurb: d.blurb,
+        blurbStyle: 'font-size: 15px; color: ' + soft,
+        listStyle: 'display: flex; flex-direction: column; gap: 9px; font-size: 14px; padding-top: 14px; flex: 1; border-top: 1px solid ' + (pick ? 'rgba(255,255,255,0.2)' : '#ECEDF5'),
+        features: d.features, cta: d.cta,
+        cardStyle: 'border-radius: 26px; padding: 26px; display: flex; flex-direction: column; gap: 10px; box-sizing: border-box; ' + (pick ? 'color: #FFFFFF; background: linear-gradient(160deg, #1B2A8C, #3550E0 55%, #6D45E0); box-shadow: 0 40px 80px -30px rgba(53,80,224,0.7); transform: translateY(-10px)' : 'color: #0E1330; background: #FFFFFF; border: 1px solid #E6E8F4; box-shadow: 0 1px 2px rgba(14,19,48,0.05)'),
+        ctaStyle: 'height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 15px; font-weight: 600; margin-top: 8px; ' + (pick ? 'background: #FFFFFF; color: #1B2A8C' : 'background: #0E1330; color: #FFFFFF'),
+      };
+    });
+
+    const st = this.state;
+    const P = {
+      dash: ['Dashboard', 'M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z', 'Home'],
+      proj: ['Projects', 'M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.7-.9L9.6 3.9A2 2 0 0 0 7.9 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2zM8 10v4M12 10v2M16 10v6', 'Work'],
+      docs: ['Documents', 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M16 13H8M16 17H8', 'Work'],
+      cl: ['Clients', 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8zM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75', 'Work'],
+    };
+    const go = (pg) => () => this.setState({ pg });
+    const rail = Object.keys(P).map((key) => {
+      const on = st.pg === key;
+      return { label: P[key][0], d: P[key][1], go: go(key), style: 'width: 36px; height: 34px; border: 0; border-radius: 9px; display: grid; place-items: center; cursor: pointer; background: ' + (on ? '#23252B' : 'transparent') + '; color: ' + (on ? '#ECEDEF' : '#8A8F98') };
+    });
+    const paid = st.paid, done = st.done;
+    const docData = [
+      { ini: 'AN', av: 'linear-gradient(135deg, #FF7847, #C13B7A)', client: 'Al Noor Trading', no: 'INV-0043 · Invoice', kind: 'Invoice', num: 'INV-0043', amt: 'AED 8,000', st: paid ? 'Paid today' : '3 days overdue', stc: paid ? '#1F8A52' : '#C13838', item: 'Website phase 2 · design and build' },
+      { ini: 'AN', av: 'linear-gradient(135deg, #FF7847, #C13B7A)', client: 'Al Noor Trading', no: 'QUO-0019 · Quote', kind: 'Quote', num: 'QUO-0019', amt: 'AED 8,000', st: 'Approved by Huda', stc: '#1F8A52', item: 'Website phase 2 · design and build' },
+      { ini: 'SL', av: 'linear-gradient(135deg, #A855F7, #6B21A8)', client: 'Studio Lumen', no: 'INV-0041 · Invoice', kind: 'Invoice', num: 'INV-0041', amt: 'AED 5,200', st: 'Sent', stc: '#3550E0', item: 'Brand identity' },
+      { ini: 'DH', av: 'linear-gradient(135deg, #10B981, #0E7C5C)', client: 'Desk Hub', no: 'INV-0038 · Invoice', kind: 'Invoice', num: 'INV-0038', amt: 'AED 1,100', st: 'Paid 2 Nov', stc: '#1F8A52', item: 'Office signage' },
+    ];
+    const docs = docData.map((d, i) => ({ ...d, pick: () => this.setState({ doc: i }), style: 'display: flex; align-items: center; gap: 10px; width: 100%; border: 0; border-radius: 10px; padding: 9px 10px; font: inherit; color: #14161A; cursor: pointer; background: ' + (st.doc === i ? '#F1F1EE' : 'transparent') }));
+    const D = docData[st.doc];
+    const pill = (bg, c) => 'background: ' + bg + '; color: ' + c;
+    const clDocs = [
+      { no: 'INV-0041', name: 'Brand identity', amt: 'AED 5,000', st: 'Paid', pill: pill('#E6F2EB', '#1F8A52') },
+      { no: 'INV-0042', name: 'Social media kit', amt: 'AED 6,000', st: 'Sent', pill: pill('#EAEEFC', '#3550E0') },
+      { no: 'INV-0043', name: 'Website phase 2', amt: 'AED 8,000', st: paid ? 'Paid' : 'Overdue', pill: paid ? pill('#E6F2EB', '#1F8A52') : pill('#FBE9E9', '#C13838') },
+    ];
+    const KQ = ['', "What's overdue this week?", 'Draft a quote and chase Al Noor', 'How is Website phase 2 doing?'];
+    const kA = st.k === 1 ? (paid ? 'Nothing is overdue. Al Noor paid INV-0043 today, so you are all caught up.' : 'One invoice: INV-0043 from Al Noor Trading, AED 8,000, 3 days late. Want me to draft a friendly reminder to Huda?')
+      : st.k === 3 ? 'On track. ' + (done ? '3' : '2') + ' of 4 tasks done, ' + (done ? '16h 36m' : '14h 21m') + ' logged, and AED 6,800 profit at an 85% margin. Launch is on 28 Nov.' : '';
+    const vals = {
+      rail, crumbA: P[st.pg][2], crumbB: P[st.pg][0],
+      pgDash: st.pg === 'dash', pgProj: st.pg === 'proj', pgDocs: st.pg === 'docs', pgCl: st.pg === 'cl',
+      goDocs: go('docs'), goProj: go('proj'),
+      outstanding: paid ? 'AED 11,000' : 'AED 19,000', outSub: paid ? '2 invoices unpaid' : '3 invoices unpaid',
+      overdue: paid ? 'AED 0' : 'AED 8,000', overdueSub: paid ? 'nothing at risk' : '1 at risk',
+      lateText: paid ? 'paid today' : '3 days late', payLabel: paid ? 'Paid ✓' : 'Record payment',
+      payIt: () => this.setState({ paid: true }),
+      workText: done ? '3 of 4 tasks' : '2 of 4 tasks', timeText: done ? '16h 36m logged' : '14h 21m logged',
+      workBar: 'height: 100%; background: #14161A; transition: width .6s; width: ' + (done ? '75%' : '50%'),
+      ipCount: done ? '0' : '1', doneCount: done ? '3' : '2', notDone: !done, isDone: done,
+      finishTask: () => this.setState({ done: true }),
+      docs, docKind: D.kind, docNo: D.num, docClient: D.client, docSt: D.st, docStc: D.stc, docItem: D.item, docAmt: D.amt,
+      clDocs,
+      kEmpty: st.k === 0, kAsked: st.k > 0, kQ: KQ[st.k], kTyping: st.k > 0 && st.kTyping, kIsQuote: st.k === 2 && !st.kTyping, kHasAnswer: (st.k === 1 || st.k === 3) && !st.kTyping, kA,
+      kSteps: st.kTyping ? 'Thinking' : (st.k === 2 ? 'Worked for 3s · 2 steps' : '1 step'),
+      askOverdue: () => this.setState({ k: 1 }), askQuote: () => this.setState({ k: 2, approved: false }), askProject: () => this.setState({ k: 3 }),
+      resetKraft: () => this.setState({ k: 0, approved: false }),
+      approve: () => this.setState({ approved: true }),
+      approveLabel: st.approved ? 'Sent ✓' : 'Approve',
+      approveStyle: 'height: 30px; padding: 0 12px; border: 0; border-radius: 8px; font: inherit; font-weight: 600; color: #FFFFFF; cursor: pointer; transition: background .25s; background: ' + (st.approved ? '#1F8A52' : '#3550E0'),
+    };
+    const user = (fn) => () => { this.stopDemo(); fn(); };
+    Object.keys(vals).forEach((key) => { if (typeof vals[key] === 'function') vals[key] = user(vals[key]); });
+    vals.rail = vals.rail.map((r) => ({ ...r, go: user(r.go) }));
+    vals.docs = vals.docs.map((d) => ({ ...d, pick: user(d.pick) }));
+    const TO = [null, ['Reminder sent to Huda', 'Logged on INV-0043'], ['Checkout build is done', 'Website phase 2 · 75% complete'], ['Payment recorded · AED 8,000', 'INV-0043 paid · receipt sent']];
+    vals.hasToast = st.toast > 0; vals.toastT = st.toast ? TO[st.toast][0] : ''; vals.toastS = st.toast ? TO[st.toast][1] : '';
+    vals.demoOn = st.demo; vals.demoOff = !st.demo; vals.replay = () => this.startDemo();
+    vals.navOpen = st.navOpen; vals.navOpenStr = st.navOpen ? 'true' : 'false';
+    vals.toggleNav = () => this.setState({ navOpen: !this.state.navOpen }); vals.closeNav = () => this.setState({ navOpen: false });
+    vals.menuIcon = st.navOpen ? 'M18 6 6 18M6 6l12 12' : 'M4 7h16M4 12h16M4 17h16';
+    return {
+      ...vals,
+      tabs, stageStyle,
+      tab0: tab === 0, tab1: tab === 1, tab2: tab === 2, tab3: tab === 3, tab4: tab === 4,
+      feed, plans,
+      monthlyOn: !annual, annualOn: annual,
+      monthlyStyle: seg(!annual), annualStyle: seg(annual),
+      showMonthly: () => this.setState({ annual: false }),
+      showAnnual: () => this.setState({ annual: true }),
+    };
+  }
+}
+</script>
+</body>
+</html>

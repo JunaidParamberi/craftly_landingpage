@@ -1,85 +1,43 @@
-import type { Metadata } from 'next'
-import { Inter, Sora } from 'next/font/google'
-import './globals.css'
+import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-})
-
-const sora = Sora({
-  subsets: ['latin'],
-  variable: '--font-sora',
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800'],
-  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-})
+const title = "CraftlyAI · The one app your whole business runs on";
+const description =
+  "Quotes, invoices, payments, projects and follow-ups in one place, with Kraft, an AI assistant that does the paperwork and asks before anything goes out.";
 
 export const metadata: Metadata = {
-  title: 'CraftlyAI - Empower Your Independent Consultancy',
-  description: 'CraftlyAI: AI-powered business management platform for freelancers worldwide. Automate proposals, manage clients, and track finances. Start your free trial today.',
-  keywords: [
-    'freelancer CRM',
-    'consultant management',
-    'AI proposal generator',
-    'freelance invoicing software',
-    'business management platform',
-    'consultant CRM',
-    'AI-powered invoicing',
-    'freelance financial tracking',
-    'consultant tools',
-    'independent consultant software',
-    'automated proposal generation',
-    'freelance business management',
-    'freelancer platform',
-    'tax-compliant invoicing',
-    'consultant productivity tools',
-    'global freelancer platform',
-    'international consultant tools',
-  ],
-  authors: [{ name: 'CraftlyAI' }],
+  metadataBase: new URL("https://craftlyai.app"),
+  title,
+  description,
+  alternates: { canonical: "/" },
+  icons: { icon: "/favicon.png", apple: "/favicon.png" },
   openGraph: {
-    title: 'CraftlyAI - AI-Powered Business Management for Freelancers Worldwide',
-    description: 'Empower your independent consultancy with AI-driven business management tools. Automate proposals, manage clients, track finances, and scale your consultancy globally. Start your 14-day free trial today.',
-    url: 'https://craftlyai.com',
-    siteName: 'CraftlyAI',
-    images: [
-      {
-        url: 'https://craftlyai.com/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'CraftlyAI - AI-powered business management platform dashboard showing proposal generation, client management, and financial tracking features for freelancers and consultants worldwide',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
+    type: "website",
+    url: "https://craftlyai.app",
+    siteName: "CraftlyAI",
+    title,
+    description,
+    images: [{ url: "/og.jpg", width: 1200, height: 630, type: "image/jpeg", alt: "CraftlyAI: the one app your business runs on. Quotes, projects, invoices and payments with an AI assistant." }],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'CraftlyAI - AI-Powered Business Management for Freelancers Worldwide',
-    description: 'Empower your independent consultancy with AI-driven business management tools. Start your 14-day free trial today.',
-    images: ['https://craftlyai.com/og-image.jpg'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-}
+  twitter: { card: "summary_large_image", title, description, images: ["/og.jpg"] },
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#FFFFFF" };
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#6366F1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+        <link rel="preload" href="/fonts/Chillax-Variable.woff2" as="font" type="font/woff2" crossOrigin="" />
       </head>
-      <body className={`${inter.variable} ${sora.variable} font-sans dark`}>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
-  )
+  );
 }
