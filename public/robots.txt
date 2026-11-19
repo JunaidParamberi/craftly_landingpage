@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://craftlyai.app/sitemap.xml
+Sitemap: https://www.craftlyai.app/sitemap.xml

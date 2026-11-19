@@ -7,14 +7,14 @@ const description =
   "Quotes, invoices, payments, projects and follow-ups in one place, with Kraft, an AI assistant that does the paperwork and asks before anything goes out.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://craftlyai.app"),
+  metadataBase: new URL("https://www.craftlyai.app"),
   title,
   description,
   alternates: { canonical: "/" },
   icons: { icon: "/favicon.png", apple: "/favicon.png" },
   openGraph: {
     type: "website",
-    url: "https://craftlyai.app",
+    url: "https://www.craftlyai.app",
     siteName: "CraftlyAI",
     title,
     description,
