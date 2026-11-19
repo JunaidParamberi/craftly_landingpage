@@ -18,9 +18,9 @@ export const metadata: Metadata = {
     siteName: "CraftlyAI",
     title,
     description,
-    images: [{ url: "/media/craftlyai-film-poster.jpg", width: 1600, height: 900, alt: "CraftlyAI" }],
+    images: [{ url: "/og.jpg", width: 1200, height: 630, type: "image/jpeg", alt: "CraftlyAI: the one app your business runs on. Quotes, projects, invoices and payments with an AI assistant." }],
   },
-  twitter: { card: "summary_large_image", title, description, images: ["/media/craftlyai-film-poster.jpg"] },
+  twitter: { card: "summary_large_image", title, description, images: ["/og.jpg"] },
 };
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#FFFFFF" };
